@@ -1,84 +1,55 @@
 const express = require("express");
+const router = express.Router();
 const app = express();
+const sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database("./mydb.sqlite3");
+const routes = require("./routes.js");
 
-const stores = require("./stores.json");
+// Middleware for parsing JSON
+app.use(express.json());
 
-// get info about an resturant
-app.get("/", function (req, res) {
-  const { storename } = req.query;
-  console.log(storename);
-  const index = stores.findIndex((store) => store.name === storename);
-  if (index > -1) {
-    res.json(stores[index]);
-  } else {
-    res.send("Store not found!");
-  }
-});
-
-// get all the names of the districts
-app.get("/districts", function (req, res) {
-  const districtsList = {};
-  for (let i = 0; i < stores.length; i++) {
-    districtsList[stores[i].district] = 1;
-  }
-  res.json(Object.keys(districtsList));
-});
-
-// get all the resturants of a specific district
-app.get("/districts/:disctrictname", (req, res) => {
-  const { disctrictname } = req.params;
-  const districtStores = stores.filter(
-    (store) => store.district === disctrictname
-  );
-  res.json(districtStores);
-});
-
-// get the name of a specific restaurant by its name
-app.get("/store_name", function (req, res) {
-  const { storename } = req.query;
-  const store = stores.find((store) => store.name === storename);
-  if (store) {
-    res.json({ name: store.name });
-  } else {
-    res.send("Store not found!");
-  }
-});
-
-// get URL of a specific restaurant
-app.get("/store_url", function (req, res) {
-  const { storename } = req.query;
-  const store = stores.find((store) => store.name === storename);
-  if (store) {
-    res.json({ url: store.url });
-  } else {
-    res.send("Store not found!");
-  }
-});
-
-// Post a new resturant place
-app.post(
-  "/add_store",
-  express.json(), // for parsing application/json body in POST
-  (req, res) => {
-    const { body } = req;
-    console.log(body);
-    stores.push(body);
-    res.send("Store added!");
-  }
-);
-
-// Delete an resturant
-app.delete("/", function (req, res) {
-  const { storename } = req.query;
-  console.log(storename);
-  const index = stores.findIndex((stores) => stores.name === storename);
-  if (index > -1) {
-    stores.splice(index, 1);
-    res.send(`Store found! Deleting store with index: ${index}`);
-  } else {
-  }
-});
+// Routing methods
+app.use("/", routes);
 
 app.listen(3000, () => {
   console.log("Server is running at port 3000");
 });
+
+///////////////////////////////////////////////
+
+// DATABASE
+
+db.run(
+  `CREATE TABLE IF NOT EXISTS stores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    district TEXT NOT NULL,
+    url TEXT NOT NULL
+  )`,
+  (err) => {
+    if (err) {
+      console.error("Error creating table:", err.message);
+    } else {
+      console.log("Table created successfully or already exists");
+
+      // Insert an example store into the "stores" table
+      const exampleStore = [
+        "Example Store",
+        "District X",
+        "http://example.com/store",
+      ];
+
+      db.run(
+        `INSERT INTO stores (name, district, url) VALUES (?, ?, ?)`,
+        exampleStore,
+        (err) => {
+          if (err) {
+            console.error("Error inserting data:", err.message);
+          } else {
+            console.log("Inserted data into the table");
+          }
+        }
+      );
+    }
+  }
+);
