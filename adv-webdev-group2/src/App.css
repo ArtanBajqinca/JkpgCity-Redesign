@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,10 +22,22 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
+}
+
+.header {
+  width: 100%;
+  height: 407px;
+  background-color: red;
+}
+
+.navbar-section {
+  width: 100%;
+  height: 50px;
+  background-color: green;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +47,6 @@
   to {
     transform: rotate(360deg);
   }
+
+
 }
