@@ -20,7 +20,7 @@ app.listen(3000, () => {
 // DATABASE
 
 db.run(
-  `CREATE TABLE IF NOT EXISTS stores (
+  `CREATE TABLE IF NOT EXISTS gyms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     district TEXT NOT NULL,
@@ -32,16 +32,16 @@ db.run(
     } else {
       console.log("Table created successfully or already exists");
 
-      // Insert an example store into the "stores" table
-      const exampleStore = [
-        "Example Store",
-        "District X",
-        "http://example.com/store",
+      // Insert an example gym into the "gyms" table
+      const examplegym = [
+        "Example Gym",
+        "Östra Torget",
+        "http://example.com/gym",
       ];
 
       db.run(
-        `INSERT INTO stores (name, district, url) VALUES (?, ?, ?)`,
-        exampleStore,
+        `INSERT INTO gyms (name, district, url) VALUES (?, ?, ?)`,
+        examplegym,
         (err) => {
           if (err) {
             console.error("Error inserting data:", err.message);
