@@ -2,17 +2,18 @@
   {
     "name": "Affes salong",
     "url": "https://affessalong.se/",
-    "district": ""
+    "district": "",
+    "type": "salon"
   },
   {
     "name": "All:tid Salong",
     "url": "https://salongalltid.se/",
     "district": ""
-  },
+  }, 
   {
     "name": "Antoinette's house of beauty",
     "url": "https://facebook.com/profile.php?id=100063622382804&eav=Afa96FCxwtkxvo_kvrFAx1N0Vif3vRr5MHB3hYutWT80SolIkHBiV7JIs4Ixg1T7Qjo&paipv=0&_rdr",
-    "district": ""
+    "district": "Väster"
   },
   {
     "name": "Barber for Gentlemen Jönköping",
@@ -62,22 +63,22 @@
   {
     "name": "Fitness and friends",
     "url": "https://fitnessandfriends.se/",
-    "district": ""
+    "district": "Väster"
   },
   {
     "name": "Fitness24Seven Jönköping centrum",
     "url": "https://fitness24seven.com/vara-gym/se-vara-gym/jonkoping-centrum",
-    "district": ""
+    "district": "Öster"
   },
   {
     "name": "Fitness24Seven Väster",
     "url": "https://jkpgcity.se/stadsdel/vaster",
-    "district": ""
+    "district": "Väster"
   },
   {
     "name": "Flow Yoga",
     "url": "https://flowyoga.se/",
-    "district": ""
+    "district": "Öster"
   },
   {
     "name": "Fot & Kropp",
@@ -92,17 +93,17 @@
   {
     "name": "Foten",
     "url": "https://foten.se/om-foten/vara-butiker/",
-    "district": ""
+    "district": "Öster"
   },
   {
     "name": "Freja & Frasse",
     "url": "https://frejaochfrasse.se/",
-    "district": ""
+    "district": "Öster"
   },
   {
     "name": "Friskis&Svettis",
     "url": "https://friskissvettis.se/jonkoping",
-    "district": ""
+    "district": "Öster"
   },
   {
     "name": "Frisör fåfäng",
@@ -141,367 +142,367 @@
   },
   {
     "name": "Hud och Hälsa AB",
-    "url": "",
+    "url": "https://hudohalsa.com/",
     "district": ""
   },
   {
     "name": "Hudoteket",
-    "url": "",
-    "district": ""
+    "url": "https://hudoteket.se/",
+    "district": "Öster"
   },
   {
     "name": "Hudsalongen",
-    "url": "",
-    "district": ""
+    "url": "https://hudsalongen.se/",
+    "district": "Öster"
   },
   {
     "name": "Hår & Co",
-    "url": "",
+    "url": "https://harochco.se/",
     "district": ""
   },
   {
     "name": "Hår 2000",
-    "url": "",
-    "district": ""
+    "url": "https://har2000.se/",
+    "district": "Väster"
   },
   {
     "name": "Hårdesign by Anna",
-    "url": "",
-    "district": ""
+    "url": "https://hardesignbyanna.se/",
+    "district": "Öster"
   },
   {
     "name": "Hårfin",
-    "url": "",
+    "url": "https://harfin.com/",
     "district": ""
   },
   {
     "name": "Hårfixarna",
-    "url": "",
+    "url": "https://harfixarna.com/",
     "district": ""
   },
   {
     "name": "Hårgränd",
-    "url": "",
+    "url": "https://hargrand.se/",
     "district": ""
   },
   {
     "name": "Hårsalong Påpée",
-    "url": "",
+    "url": "https://harsalongenpapee.se/",
     "district": ""
   },
   {
     "name": "Hälsobyrån",
-    "url": "",
+    "url": "https://halsobyran.se/",
     "district": ""
   },
   {
     "name": "Intermezzo",
-    "url": "",
+    "url": "https://intermezzofrisor.se/",
     "district": ""
   },
   {
     "name": "Jönköpings Afroshop",
-    "url": "",
+    "url": "https://afroshopjonkoping.com/",
     "district": ""
   },
   {
     "name": "Kalufsmakarn",
-    "url": "",
+    "url": "https://kalufsmakarn.se/",
     "district": ""
   },
   {
     "name": "Karisma Hair Academy",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Klinik Forma",
-    "url": "",
+    "url": "https://klinikforma.se/",
     "district": ""
   },
   {
     "name": "Klippcenter",
-    "url": "",
-    "district": ""
+    "url": "https://klippcenter-jkpg.se/",
+    "district": "Väster"
   },
   {
     "name": "Klippit",
-    "url": "",
+    "url": "https://klipp-it.se/",
     "district": ""
   },
   {
     "name": "Kristinas fotvård",
-    "url": "",
+    "url": "https://facebook.com/kristinafotvard/",
     "district": ""
   },
   {
     "name": "Kroppsligt i Jönköping",
-    "url": "",
+    "url": "https://facebook.com/Kroppsligt/",
     "district": ""
   },
   {
     "name": "La Barbiere",
-    "url": "",
+    "url": "https://facebook.com/labarbiere1/",
     "district": ""
   },
   {
     "name": "Lashliftby Dimen",
-    "url": "",
+    "url": "https://facebook.com/people/Lashliftbydimen/100063630263066/",
     "district": ""
   },
   {
     "name": "Lewis salong",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Liliana salongen",
-    "url": "",
+    "url": "https://facebook.com/people/Liliana-salongen/100068813411254/",
     "district": ""
   },
   {
     "name": "Louise Nails",
-    "url": "",
+    "url": "https://instagram.com/louise.nails/",
     "district": ""
   },
   {
     "name": "Made by Jessica",
-    "url": "",
+    "url": "https://instagram.com/madebyjessica_/",
     "district": ""
   },
   {
     "name": "Massage Corner",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Memira",
-    "url": "",
+    "url": "https://memira.se/klinik/jonkoping/?gclid=Cj0KCQjwteOaBhDuARIsADBqRegQQ2B9PnOj1E_Zeo5yKxGJYmAh4Hllw4S3phZ_XOX7QFvDflATXtMaAjWxEALw_wcB",
     "district": ""
   },
   {
     "name": "Modern Nails Väster",
-    "url": "",
-    "district": ""
+    "url": "https://modernnails.se/",
+    "district": "Väster"
   },
   {
     "name": "Modern Nails Öster",
-    "url": "",
-    "district": ""
+    "url": "https://modernnails.se/",
+    "district": "Öster"
   },
   {
     "name": "Mr Barbershop",
-    "url": "",
+    "url": "https://mrbarbershop.se/",
     "district": ""
   },
   {
     "name": "Myras Skönhet hos city frisör",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "NAXIA Salong",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Neoskin",
-    "url": "",
-    "district": ""
+    "url": "https://neoskin.se/",
+    "district": "Öster"
   },
   {
     "name": "Niviana Aromaterapi",
-    "url": "",
+    "url": "https://facebook.com/people/Niviana-Aromaterapi/100063509873183/",
     "district": ""
   },
   {
     "name": "Nordic Wellness Atlantis Spa",
-    "url": "",
-    "district": ""
+    "url": "https://nordicwellness.se/vara-klubbar/jonkoping/jonkoping-atlantis/",
+    "district": "Väster"
   },
   {
     "name": "Nordic Wellness City",
-    "url": "",
-    "district": ""
+    "url": "https://nordicwellness.se/vara-klubbar/jonkoping/jonkoping-city/",
+    "district": "Öster"
   },
   {
     "name": "Nordic Wellness Jönköping Campus",
-    "url": "",
+    "url": "https://nordicwellness.se/vara-klubbar/jonkoping/jonkoping-campus/",
     "district": ""
   },
   {
     "name": "Norma Hairfashion i Jönköping AB",
-    "url": "",
+    "url": "https://hairfashionsalong.se/",
     "district": ""
   },
   {
     "name": "Nyans Hårstudio",
-    "url": "",
+    "url": "https://nyansharstudio.se/",
     "district": ""
   },
   {
     "name": "Paloma Pinto Massage",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Pi thai art tattoo",
-    "url": "",
-    "district": ""
+    "url": "https://pithaiarttattoo.business.site/",
+    "district": "Tändsticksområdet"
   },
   {
     "name": "PiBrows by Gabriella",
-    "url": "",
+    "url": "https://instagram.com/phibrowsbygabriella/",
     "district": ""
   },
   {
     "name": "Porcelain by Zara",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Pretty Nails",
-    "url": "",
+    "url": "https://facebook.com/people/Pretty-Nails-J%C3%B6nk%C3%B6ping/100047390246361/",
     "district": ""
   },
   {
     "name": "Proffshänder massage",
-    "url": "",
+    "url": "https://facebook.com/profile.php?id=100063579673745",
     "district": ""
   },
   {
     "name": "PT Studion",
-    "url": "",
-    "district": ""
+    "url": "https://www.ptstudionjkpg.se/",
+    "district": "Väster"
   },
   {
     "name": "Pärla Salong",
-    "url": "",
+    "url": "https://facebook.com/profile.php?id=100063528493887",
     "district": ""
   },
   {
     "name": "Rebecca Ekström",
-    "url": "",
+    "url": "https://rebeccaekstrom.se/",
     "district": ""
   },
   {
     "name": "Rickards salong",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Salong 5 sinnen",
-    "url": "",
+    "url": "https://5sinnen.se/",
     "district": ""
   },
   {
     "name": "Salong Cheveux",
-    "url": "",
+    "url": "https://salongcheveux.com/",
     "district": ""
   },
   {
     "name": "Salong Claes",
-    "url": "",
+    "url": "https://facebook.com/profile.php?id=100057485295087",
     "district": ""
   },
   {
     "name": "Salong DU & JAG",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Salong Klipp Dej",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Salong På Håret",
-    "url": "",
+    "url": "https://facebook.com/SalongPaHaret.2/",
     "district": ""
   },
   {
     "name": "Salongen",
-    "url": "",
-    "district": ""
+    "url": "https://facebook.com/salongenjkpg/",
+    "district": "Öster"
   },
   {
     "name": "Sax in the city",
-    "url": "",
+    "url": "https://saxinthecityjkpg.se/",
     "district": ""
   },
   {
     "name": "Skinfix Clinic",
-    "url": "",
+    "url": "https://skinfixclinic.se/",
     "district": ""
   },
   {
     "name": "Sköna Fötter",
-    "url": "",
+    "url": "https://skona-fotter.se/",
     "district": ""
   },
   {
     "name": "Sköna Jag",
-    "url": "",
+    "url": "https://skonajag.nu/",
     "district": ""
   },
   {
     "name": "Skönheten och Lejonet",
-    "url": "",
+    "url": "https://linnealeijon.se/",
     "district": ""
   },
   {
     "name": "Smile Thai Massage & Spa",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Sofia Salongen",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "STC gym",
-    "url": "",
+    "url": "https://stc.se/klubbar/jonkoping-city/",
     "district": ""
   },
   {
     "name": "Studio Balans",
-    "url": "",
+    "url": "https://studiobalansjkpg.se/",
     "district": ""
   },
   {
     "name": "Studio kreativ",
-    "url": "",
+    "url": "https://studio-kreativ.se/",
     "district": ""
   },
   {
     "name": "Studio L",
-    "url": "",
+    "url": "https://jkpgcity.se/upptack/[...slug]",
     "district": ""
   },
   {
     "name": "Svensson & Heijel",
-    "url": "",
+    "url": "https://facebook.com/people/Svensson-Heijel/100057603903316/",
     "district": ""
   },
   {
     "name": "Tatuering Wester",
-    "url": "",
+    "url": "https://facebook.com/tatueringwester/",
     "district": ""
   },
   {
     "name": "TCM mottagning (massage)",
-    "url": "",
+    "url": "https://kinamedicin.se/",
     "district": ""
   },
   {
     "name": "Thawan Svimongkhon Fredriksson Massage",
-    "url": "",
+    "url": "https://thawanthaimassage.se/",
     "district": ""
   },
   {
     "name": "Yogiteket",
-    "url": "",
+    "url": "https://yogiteket.se/",
     "district": ""
   }
 ]
