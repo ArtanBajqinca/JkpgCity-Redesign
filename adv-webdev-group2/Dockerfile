@@ -11,10 +11,11 @@ COPY package*.json ./
 RUN npm install
 
 # Bundle app source inside the Docker image
+# Copy everything from your project's root into the container's work directory
 COPY . .
+
+# Your App.js is in the src directory, adjust the path accordingly
+CMD ["node", "src/App.js"]
 
 # Make port 3000 available to the world outside this container
 EXPOSE 3000
-
-# Define the command to run the app
-CMD ["node", "index.js"]
