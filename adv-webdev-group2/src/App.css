@@ -31,7 +31,7 @@
 .header {
   width: 100%;
   height: 407px;
-  background-color: red;
+  background-color: blue;
 }
 
 .navbar-section {
@@ -47,6 +47,4 @@
   to {
     transform: rotate(360deg);
   }
-
-
 }
