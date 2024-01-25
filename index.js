@@ -1,5 +1,6 @@
 // External Module Imports
 const express = require("express");
+require("dotenv").config();
 const sqlite3 = require("sqlite3").verbose();
 
 // Internal Module Imports
@@ -9,7 +10,7 @@ const companyJson = require("./companies.json");
 
 // Initialization
 const app = express();
-const db = new sqlite3.Database("./mydb.sqlite3");
+// const db = new sqlite3.Database("./mydb.sqlite3");
 let Model = new ModelClass();
 
 // Middleware

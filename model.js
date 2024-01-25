@@ -6,7 +6,7 @@ class Model {
       user: "postgres",
       host: "localhost",
       database: "postgres",
-      password: "12345",
+      password: process.env.PG_PASSWORD,
       port: 5432,
     });
   }
