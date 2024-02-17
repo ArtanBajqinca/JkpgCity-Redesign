@@ -58,6 +58,42 @@
   height: 30vw;  
 }
 
+.districtDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vw;
+  gap: 10px;
+}
+
+.districtCategory {
+  display: flex;
+  align-items: center;
+  background-color: #89C5D9;
+  padding-inline: 2.4vw;
+  padding-block: 0.3vw;
+  border-radius: 5px;
+  gap: 1.4vw;
+}
+
+.districtCategory h1{
+  font-size: 14px;
+  color: #4E4E4E;
+  font-family: "Acumin Pro";
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  line-height: 27px;
+}
+
+/* Hide default checkbox */
+.categoryCheckBox input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+
 #basic-nav-dropdown {
     color: white;
 }

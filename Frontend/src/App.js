@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { GrMenu } from "react-icons/gr";
+import Form from 'react-bootstrap/Form';
 
 function App() {
   return (
@@ -92,8 +93,22 @@ function SecondSection() {
 function ThirdSection() {
   return (
     <div className='thirdSectionBody'>
-      
+      <div className='districtDiv'>
+        <DistrictGategory name="TÄNDSTICKSOMRÅDET"/>
+        <DistrictGategory name="STATIONEN"/>
+      </div>
     </div>
+  )
+}
+
+function DistrictGategory(props) {
+  return (
+        <div className='districtCategory'>
+          <h1>
+            {props.name}
+          </h1>
+          <input type="checkbox" className='categoryCheckBox'/>
+        </div>
   )
 }
 
