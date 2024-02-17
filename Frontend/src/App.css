@@ -20,7 +20,7 @@
 
 .firstSectionContentDiv{
   padding-left: 15.8vw;
-  padding-top: 4vw;
+  padding-top: 6.5vw;
   margin: 0;
 }
 
@@ -55,7 +55,10 @@
 .thirdSectionBody{
   padding: 0;
   margin: 0;
-  height: 30vw;  
+  height: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
 }
 
 .districtDiv{
@@ -66,7 +69,7 @@
   gap: 10px;
 }
 
-.districtCategory {
+.districtCard {
   display: flex;
   align-items: center;
   background-color: #89C5D9;
@@ -76,7 +79,7 @@
   gap: 1.4vw;
 }
 
-.districtCategory h1{
+.districtCard h1, .categoryCard h1{
   font-size: 14px;
   color: #4E4E4E;
   font-family: "Acumin Pro";
@@ -87,9 +90,86 @@
 }
 
 /* Hide default checkbox */
-.categoryCheckBox input {
+.checkBox input {
   opacity: 0;
   cursor: pointer;
+}
+
+.categoryDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1vw;
+  gap: 10px;
+}
+
+.categoryCard{
+  display: flex;
+  align-items: center;
+  background-color: #D9D0BC;
+  padding-inline: 2.4vw;
+  padding-block: 0.3vw;
+  border-radius: 5px;
+  gap: 1.4vw;
+}
+
+.categoryTitleDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #444444;
+  padding-block: 1vw;
+  width: 75%;
+  margin-top: 3vw;
+}
+
+.categoryTitleDiv h1{
+  font-size: 27px;
+  color: white;
+  font-family: "Acumin Pro";
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-list {
+  display: flex;
+  width: 75%;
+  margin-top: 2vw;
+  gap: 2vw;
+}
+
+.accordion-row{
+  display: flex;
+}
+
+.accordion {
+  flex: 1;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #D9D0BC;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 10px;
 }
 
 

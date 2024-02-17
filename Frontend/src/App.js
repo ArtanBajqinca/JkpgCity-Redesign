@@ -82,7 +82,7 @@ function SecondSection() {
     <div className='secondSectionBody'>
       <img
         src = "./img/jkpgDistricts.svg"
-        width={window.innerWidth > 1000 ? "1050" : "700"}
+        width="95%"
         alt = "jkpgcity districts"
         className='jkpgDistrictsLogo'
       />
@@ -93,23 +93,102 @@ function SecondSection() {
 function ThirdSection() {
   return (
     <div className='thirdSectionBody'>
+
       <div className='districtDiv'>
-        <DistrictGategory name="TÄNDSTICKSOMRÅDET"/>
-        <DistrictGategory name="STATIONEN"/>
+        <District name="TÄNDSTICKSOMRÅDET"/>
+        <District name="STATIONEN"/>
+        <District name="RÅDHUSPARKEN"/>
+        <District name="HÖGSKOLAN"/>
+        <District name="VÄSTER"/>
+        <District name="ATOLLEN"/>
+        <District name="ÖSTER"/>
       </div>
+
+      <div className='categoryDiv'>
+        <Category name="GYM & TRÄNING"/>
+        <Category name="SKÖNHET & FRISÖR"/>
+        <Category name="SPA & MASSAGE"/>
+      </div>
+
+      <CategoryTitle/>
+
+      <AccordionList/>
+
     </div>
   )
 }
 
-function DistrictGategory(props) {
+function District(props) {
   return (
-        <div className='districtCategory'>
+        <div className='districtCard'>
           <h1>
             {props.name}
           </h1>
-          <input type="checkbox" className='categoryCheckBox'/>
+          <input type="checkbox" className='checkBox'/>
         </div>
   )
+}
+
+function Category(props) {
+  return (
+        <div className='categoryCard'>
+          <h1>
+            {props.name}
+          </h1>
+          <input type="checkbox" className='checkBox'/>
+        </div>
+  )
+}
+
+function CategoryTitle() {
+  return (
+    <div className='categoryTitleDiv'>
+      <h1>
+        GYM & TRÄNING
+      </h1>
+    </div>
+  )
+}
+
+function AccordionList() {
+  const data = [
+    { title: 'Store 1', content: 'Information about Store 1' },
+    { title: 'Store 2', content: 'Information about Store 2' },
+    { title: 'Store 3', content: 'Information about Store 3' },
+    
+    
+    // Add more items as needed
+  ];
+
+  return (
+    <div className="accordion-list">
+      {data.map((item, index) => (
+        <Accordion key={index} title={item.title} content={item.content} />
+      ))}
+    </div>
+  );
+}
+
+function Accordion({ title, content }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="accordion">
+      <div className="accordion-header" onClick={toggleAccordion}>
+        <h3>{title}</h3>
+        <span className={`arrow ${isOpen ? 'open' : ''}`}></span>
+      </div>
+      {isOpen && (
+        <div className="accordion-content">
+          <p>{content}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;
