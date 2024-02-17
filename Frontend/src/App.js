@@ -51,7 +51,7 @@ function CustomNavbar() {
   return (
     <Navbar expand="lg" style={{ backgroundColor: "transparent", margin:0}}>
       <Container style={{ padding:0,margin:0}}>
-        <Navbar.Brand href="#home" style={{ paddingLeft: 300, paddingRight: 275}}>
+        <Navbar.Brand href="#home"className='jkpgcitylogo'>
           <img
             src= "./img/jkpgcity.svg"
             height="40"
@@ -81,8 +81,9 @@ function SecondSection() {
     <div className='secondSectionBody'>
       <img
         src = "./img/jkpgDistricts.svg"
-        height = "28"
+        width={window.innerWidth > 1000 ? "1050" : "700"}
         alt = "jkpgcity districts"
+        className='jkpgDistrictsLogo'
       />
     </div>
   )
