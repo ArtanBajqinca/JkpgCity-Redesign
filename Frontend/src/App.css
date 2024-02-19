@@ -5,12 +5,12 @@
 }
 
 .firstSectionBody{
-  background-image: url(./img/gym1.png);
+  background-image: url(../public/img/gym1.png);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0;
   margin: 0;
-  height: 30vw;
+  height: 35vw;
 }
 
 .jkpgcitylogo{
@@ -52,10 +52,14 @@
   align-items: center; 
 }
 
+.jkpgDistrictsLogo{
+  width: 95%;
+}
+
 .thirdSectionBody{
   padding: 0;
   margin: 0;
-  height: 30vw;
+  height: 60vw;
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -66,21 +70,21 @@
   align-items: center;
   justify-content: center;
   margin-top: 3vw;
-  gap: 10px;
+  gap: 0.5vw;
 }
 
 .districtCard {
   display: flex;
   align-items: center;
   background-color: #89C5D9;
-  padding-inline: 2.4vw;
+  padding-inline: 2vw;
   padding-block: 0.3vw;
   border-radius: 5px;
   gap: 1.4vw;
 }
 
 .districtCard h1, .categoryCard h1{
-  font-size: 14px;
+  font-size: 12px;
   color: #4E4E4E;
   font-family: "Acumin Pro";
   font-weight: bold;
@@ -100,7 +104,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 1vw;
-  gap: 10px;
+  gap: 0.5vw;
 }
 
 .categoryCard{
@@ -134,13 +138,21 @@
 
 .accordion-list {
   display: flex;
+  flex-wrap: wrap;
   width: 75%;
   margin-top: 2vw;
-  gap: 2vw;
+  gap: 1vw;
 }
 
 .accordion-row{
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.accordion-item {
+  width: 49%; /* Adjust as needed */
+  margin-bottom: 1rem;
 }
 
 .accordion {
@@ -150,32 +162,80 @@
 .accordion-header {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  align-items: center;
+  padding: 1.5vw;
   cursor: pointer;
   background-color: #D9D0BC;
 }
 
-.arrow {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
-  transition: transform 0.3s ease;
+.accordion-header h3{
+  font-size: 20px;
+  color: black;
+  font-family: "Acumin Pro";
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  padding-left: 1vw;
 }
 
-.arrow.open {
-  transform: rotate(180deg);
+.accordionArrow {
+  font-size: 3vw; /* Adjust size as needed */
+  transition: transform 0.3s ease; /* Add a smooth transition for rotation */
+}
+
+.accordionArrow.open {
+  transform: rotate(180deg); /* Rotate the arrow icon when the accordion is open */
 }
 
 .accordion-content {
-  padding: 10px;
+  background-color: rgba(217, 208, 188, 0.5);
+  overflow: hidden; /* Hide content before expanding */
+  padding: 2vw;
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease; /* Add transition only for opacity */
+}
+
+.accordion-content.open {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease; /* Add transition only for opacity */
 }
 
 
+.accordion-content span{
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.accordion-content img{
+  height: 2.5vw;
+}
+
+.accordion-content a{
+  color: black;
+  text-decoration: underline;
+}
+
+.accordion-content h1{
+  font-size: 16px;
+  color: black;
+  font-family: "Acumin Pro";
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
 
 #basic-nav-dropdown {
     color: white;
+}
+
+@media (max-width: 768px) {
+  .accordion-item {
+    width: 100%; /* For smaller screens, show one item per row */
+  }
 }
   
   

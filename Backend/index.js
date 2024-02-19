@@ -1,6 +1,7 @@
 // External Module Imports
 const express = require("express");
 require("dotenv").config();
+const path = require('path');
 
 // Internal Module Imports
 const Model = require("./model.js");
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use("/", routes);
+
 
 // Server Initialization
 const startServer = async () => {
