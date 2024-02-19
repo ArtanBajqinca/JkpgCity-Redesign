@@ -244,7 +244,7 @@ function Accordion({ name, district, url }) {
             src= "./img/webIcon.svg"
             alt="webIcon"
           />
-          <h1>Hemsida: {url}</h1>
+          <h1>Hemsida: <a href={url}>{url}</a> </h1>
         </span>
       </div>
     </div>
