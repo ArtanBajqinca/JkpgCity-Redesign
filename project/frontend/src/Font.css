@@ -1,0 +1,30 @@
+@font-face{
+    font-family: "Acumin Pro Regular";
+    src: url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.eot");
+    src: url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.eot?#iefix")format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.woff")format("woff"),
+        url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.woff2")format("woff2"),
+        url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.ttf")format("truetype"),
+        url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.svg#Acumin Pro Regular")format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+  }
+  @font-face {
+    font-family: "Acumin Pro";
+    src: url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.eot");
+    src: url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/0e3bb5f33830d557182708005db55696.svg#Acumin Pro")format("svg");
+  }
+  @font-face {
+    font-family: "Acumin Pro Condensed Black";
+    src: url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.eot");
+    src: url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.svg#Acumin Pro Condensed Black")format("svg");
+  }
