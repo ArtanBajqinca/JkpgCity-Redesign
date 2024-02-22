@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import './Font.css';  
 import Container from 'react-bootstrap/Container';
@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { GrMenu } from "react-icons/gr";
 import { IoIosArrowRoundUp } from "react-icons/io";
+import Data from "./companies.json"; // Import JSON data
 
 function App() {
   return (
@@ -101,6 +102,7 @@ function ThirdSection() {
         <District name="VÄSTER"/>
         <District name="ATOLLEN"/>
         <District name="ÖSTER"/>
+        <District name="KULTURHUSET SPIRA"/>
       </div>
 
       <div className='categoryDiv'>
@@ -109,12 +111,7 @@ function ThirdSection() {
         <Category name="SPA & MASSAGE"/>
       </div>
 
-      <CategoryTitle name="GYM & TRÄNING"/>
-
       <AccordionList/>
-
-      <CategoryTitle name="SKÖNHET & FRISÖR"/>
-
 
     </div>
   )
@@ -153,105 +150,123 @@ function CategoryTitle(props) {
 }
 
 function AccordionList() {
-  const data = [
-    { name: 'Store 1', district: 'Rådhusparken', url: "https://www.google.com"},
-    { name: 'Store 2', district: 'Atollen', url: "https://www.google.com" },
-    { name: 'Store 3', district: 'Öster', url: "https://www.google.com"},
-    { name: 'Store 4', district: 'Kulturhuset spira', url: "https://www.google.com" },
-    { name: 'Store 5', district: 'Högskolan', url: "https://www.google.com" },
-    { name: 'Store 6', district: 'Väster', url: "https://www.google.com" },
-    { name: 'Store 7', district: 'Stationen', url: "https://www.google.com" },
-    { name: 'Store 8', district: 'Tändsticksområdet', url: "https://www.google.com" },
+  const groupedData = {
+    trainingHealth: [],
+    salonBeauty: [],
+    massageSpa: [],
+  };
 
-  ];
-
-  const groupedData = chunkArray(data, 2);
-
-  // Function to chunk the data array into pairs
-  function chunkArray(array, size) {
-    const chunkedArr = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunkedArr.push(array.slice(i, i + size));
+  // Filter data into respective categories
+  Data.forEach(item => {
+    switch (item.type) {
+      case 'trainingHealth':
+        groupedData.trainingHealth.push(item);
+        break;
+      case 'salonBeauty':
+        groupedData.salonBeauty.push(item);
+        break;
+      case 'massageSpa':
+        groupedData.massageSpa.push(item);
+        break;
+      default:
+        break;
     }
-    return chunkedArr;
-  }
+  });
 
   return (
     <div className="accordion-list">
-      {groupedData.map((row, rowIndex) => (
-        <div key={rowIndex} className="accordion-row">
-          {row.map((item, index) => (
-            <div key={index} className="accordion-item">
-              <Accordion name={item.name} district={item.district} url={item.url} />
-            </div>
-          ))}
+      {/* Render GYM & TRÄNING category */}
+      <div className="accordion-category">
+        <CategoryTitle name="GYM & TRÄNING"/>
+        <AccordionGroup items={groupedData.trainingHealth}/>
+      </div>
+      {/* Render SKÖNHET & FRISÖR category */}
+      <div className="accordion-category">
+        <CategoryTitle name="SKÖNHET & FRISÖR"/>
+        <AccordionGroup items={groupedData.salonBeauty}/>
+      </div>
+      {/* Render SPA & MASSAGE category */}
+      <div className="accordion-category">
+        <CategoryTitle name="SPA & MASSAGE"/>
+        <AccordionGroup items={groupedData.massageSpa}/>
+      </div>
+    </div>
+  );
+}
+
+  function Accordion({ name, district, url }) {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const toggleAccordion = () => {
+      setIsOpen(!isOpen);
+    };
+
+    // Function to select the appropriate icon based on the district
+    const selectIcon = (district) => {
+      switch (district) {
+          case 'rådhusparken':
+          return <img src="./img/rådhusparkenIcon.svg" alt="rådhusparken" />;
+          case 'atollen':
+          return <img src="./img/atollenIcon.svg" alt="atollen" />;
+          case 'öster':
+          return <img src="./img/österIcon.svg" alt="Home" />;
+          case 'kulturhuset spira':
+          return <img src="./img/kulturHusetSpiraIcon.svg" alt="Home" />;
+          case 'högskolan':
+          return <img src="./img/högskolanIcon.svg" alt="Home" />;
+          case 'väster':
+          return <img src="./img/västerIcon.svg" alt="Home" />;
+          case 'stationen':
+          return <img src="./img/stationenIcon.svg" alt="Home" />;
+          case 'tändsticksområdet':
+          return <img src="./img/tändSticksOmrådetIcon.svg" alt="Home" />;
+        // Add more cases for other districts as needed
+        default:
+          return <img src="./img/default.png" alt="Default" />; // Default icon
+      }
+    };
+
+    return (
+      <div className="accordion">
+        <div className="accordion-header" onClick={toggleAccordion}>
+          <h3>{name}</h3>
+          {isOpen ? (
+            <IoIosArrowRoundUp className="accordionArrow open" />
+          ) : (
+            <IoIosArrowRoundUp className="accordionArrow" />
+          )}
         </div>
-      ))}
-    </div>
-  );
-}
-
-function Accordion({ name, district, url }) {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Function to select the appropriate icon based on the district
-  const selectIcon = (district) => {
-    switch (district) {
-        case 'Rådhusparken':
-        return <img src="./img/rådhusparkenIcon.svg" alt="rådhusparken" />;
-        case 'Atollen':
-        return <img src="./img/atollenIcon.svg" alt="atollen" />;
-        case 'Öster':
-        return <img src="./img/österIcon.svg" alt="Home" />;
-        case 'Kulturhuset spira':
-        return <img src="./img/kulturHusetSpiraIcon.svg" alt="Home" />;
-        case 'Högskolan':
-        return <img src="./img/högskolanIcon.svg" alt="Home" />;
-        case 'Väster':
-        return <img src="./img/västerIcon.svg" alt="Home" />;
-        case 'Stationen':
-        return <img src="./img/stationenIcon.svg" alt="Home" />;
-        case 'Tändsticksområdet':
-        return <img src="./img/tändSticksOmrådetIcon.svg" alt="Home" />;
-      // Add more cases for other districts as needed
-      default:
-        return <img src="./img/default.png" alt="Default" />; // Default icon
-    }
-  };
-
-  return (
-    <div className="accordion">
-      <div className="accordion-header" onClick={toggleAccordion}>
-        <h3>{name}</h3>
-        {isOpen ? (
-          <IoIosArrowRoundUp className="accordionArrow open" />
-        ) : (
-          <IoIosArrowRoundUp className="accordionArrow" />
-        )}
+        <div className={`accordion-content ${isOpen ? 'open' : ''}`}>
+          <span>
+            {selectIcon(district)} {/* Render the selected icon */}
+            <h1>Distrikt: {district}</h1>
+          </span>
+          <br></br>
+          <span>
+            <img
+              src= "./img/webIcon.svg"
+              alt="webIcon"
+            />
+            <h1>Hemsida: <a href={url}>{url}</a> </h1>
+          </span>
+        </div>
       </div>
-      <div className={`accordion-content ${isOpen ? 'open' : ''}`}>
-        <span>
-          {selectIcon(district)} {/* Render the selected icon */}
-          <h1>Distrikt: {district}</h1>
-        </span>
-        <br></br>
-        <span>
-          <img
-            src= "./img/webIcon.svg"
-            alt="webIcon"
-          />
-          <h1>Hemsida: <a href={url}>{url}</a> </h1>
-        </span>
+    );
+  }
+
+  function AccordionGroup({ items }) {
+    return (
+      <div className="accordion-list">
+
+          {items.map((item, index) => (
+          <div key={index} className="accordion-item">
+          <Accordion key={index} name={item.name} district={item.district} url={item.url} />
+          </div>
+
+        ))}
+
       </div>
-    </div>
-  );
-}
-
-
-
+    );
+  }
 
 export default App;

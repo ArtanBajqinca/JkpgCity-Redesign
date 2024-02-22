@@ -77,10 +77,10 @@
   display: flex;
   align-items: center;
   background-color: #89C5D9;
-  padding-inline: 2vw;
+  padding-inline: 1vw;
   padding-block: 0.3vw;
   border-radius: 5px;
-  gap: 1.4vw;
+  gap: 1vw;
 }
 
 .districtCard h1, .categoryCard h1{
@@ -111,10 +111,10 @@
   display: flex;
   align-items: center;
   background-color: #D9D0BC;
-  padding-inline: 2.4vw;
+  padding-inline: 1vw;
   padding-block: 0.3vw;
   border-radius: 5px;
-  gap: 1.4vw;
+  gap: 1vw;
 }
 
 .categoryTitleDiv{
