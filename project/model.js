@@ -69,6 +69,12 @@ class ModelClass {
     );
     return res.rows[0];
   }
+
+  async getAllDistricts() {
+    const res = await this.client.query("SELECT DISTINCT district FROM public.companies");
+    return res.rows.map(row => row.district);
+  }
+
 }
 
 module.exports = new ModelClass();

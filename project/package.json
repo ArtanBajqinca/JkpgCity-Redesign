@@ -7,7 +7,6 @@
     "start": "concurrently \"node index.js\" \"npm --prefix ./frontend start\"",
     "build": "react-scripts build",
     "test": "react-scripts test"
-    
   },
   "author": "",
   "license": "ISC",

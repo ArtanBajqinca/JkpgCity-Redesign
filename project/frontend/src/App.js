@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { GrMenu } from "react-icons/gr";
 import { IoIosArrowRoundUp } from "react-icons/io";
-import Data from "../public/companies.json"; // Import JSON data
+import Data from "./companies.json"; // Import JSON data
 
 function App() {
   return (

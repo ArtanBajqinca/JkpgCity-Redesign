@@ -12,13 +12,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/districts", async (req, res) => {
-  try {
-    const districts = await companyJson.find().distinct("district");
-    res.json(districts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.get('/districts', async (req, res) => {
+  const uniqueDistricts = await Model.getAllDistricts();
+  res.json(uniqueDistricts);
 });
 
 router.get("/setup", async (req, res) => {
@@ -27,7 +23,6 @@ router.get("/setup", async (req, res) => {
     console.log("Setting up database...");
     console.log();
 
-    const companyJson = require("./companies.json");
     await Model.setupDatabase(companyJson);
     console.log("Database setup complete!");
     res.json({ success: true });
