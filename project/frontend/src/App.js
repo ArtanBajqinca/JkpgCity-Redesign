@@ -1,13 +1,10 @@
 import React from "react";
 import "./App.css";
 import "./Font.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { GrMenu } from "react-icons/gr";
 import { IoIosArrowRoundUp } from "react-icons/io";
-import Data from "./companies.json"; // Import JSON data
+import Data from "./companies.json";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
 function App() {
   return (
@@ -39,54 +36,58 @@ function FirstSection() {
   );
 }
 
-/**
- * Renders a custom navigation bar component.
- * @returns {JSX.Element} The custom navigation bar component.
- */
 function CustomNavbar() {
-  return (
-    <Navbar expand="lg" style={{ backgroundColor: "transparent", margin: 0 }}>
-      <Container className="navbar-container" style={{ padding: 0, margin: 0 }}>
-        <Navbar.Brand href="#home" className="jkpgcitylogo">
-          <img src="./img/jkpgcity.svg" height="39" alt="jkpgcity logo" />
-        </Navbar.Brand>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            
-            <Nav.Link
-              href="#home"
-              className="navbar-titles navbar-current-title" style={{color: "black"}}
-            >
-              UPPTÄCK
-            </Nav.Link>
-            <Nav.Link href="#link" className="navbar-titles" style={{color: "white"}}>
-              EVENEMANG
-            </Nav.Link>
-            <Nav.Link href="#link" className="navbar-titles" style={{color: "white"}}>
-              STADSDELAR
-            </Nav.Link>
-            <Nav.Link href="#link" className="navbar-titles" style={{color: "white"}}>
-              INFORMATION
-            </Nav.Link>
+  const [isOpen, setIsOpen] = React.useState(false);
 
-            <NavDropdown
-              title={<GrMenu style={{ fontSize: "24px", color: "white" }} />}
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="#action/3.1">
-                Dropdown Link 1
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Dropdown Link 2
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Dropdown Link 3
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="navbarContainer">
+      <div className="navbarSection">
+        <div className="navbarLogo">
+          <img src="./img/jkpgcity.svg" alt="jkpgCity" />
+        </div>
+        <div className="navbarLinks">
+          <a href="uptäck" className="Links">
+            UPPTÄCK
+          </a>
+          <a href="evenemang" className="Links">
+            EVENEMANG
+          </a>
+          <a href="stadsdelar" className="Links">
+            STADSDELAR
+          </a>
+          <a href="information" className="Links">
+            INFORMATION
+          </a>
+          <div className="Hamburger-menu" onClick={toggleDropdown}>
+            {isOpen ? (
+              <img src="/img/hamburger-menu-closed.svg" alt="" />
+            ) : (
+              <img src="/img/hamburger-menu-open.svg" alt="" />
+            )}
+          </div>
+          {isOpen && (
+            <div className="dropdownMenu">
+              <a href="dropdown-link1" className="dropdownLink">
+                Artiklar
+              </a>
+              <a href="dropdown-link2" className="dropdownLink">
+                Kontakt
+              </a>
+              <a href="dropdown-link3" className="dropdownLink">
+                Aktör
+              </a>
+              <a href="dropdown-link3" className="dropdownLink">
+                Om
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 

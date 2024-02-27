@@ -7,12 +7,12 @@ const root = ReactDOM.createRoot(document.getElementById("my-app"));
 
 fetch("http://localhost:3001/")
   .then((response) => response.json())
-  .then((data) => console.log(data))
+  .then((companies) => console.log(companies))
   .catch((error) => console.error("Error:", error));
 
 fetch("http://localhost:3001/districts")
   .then((response) => response.json())
-  .then((data) => console.log(data))
+  .then((district) => console.log(district))
   .catch((error) => console.error("Error:", error));
 
 root.render(
