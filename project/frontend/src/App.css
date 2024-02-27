@@ -4,7 +4,7 @@
   overflow-x: hidden;
 }
 
-.firstSectionBody{
+.firstSectionBody {
   background-image: url(../public/img/gym1.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -13,31 +13,29 @@
   height: 35vw;
 }
 
-.jkpgcitylogo{
-  padding-left: 16vw;
-  padding-right: 9vw;
+.jkpgcitylogo {
+  padding-left: 3vw;
 }
 
-.firstSectionContentDiv{
+.firstSectionContentDiv {
   padding-left: 15.8vw;
   padding-top: 6.5vw;
   margin: 0;
 }
 
-.firstSectionContentDiv h1{
+.firstSectionContentDiv h1 {
   font-size: 60px;
   color: white;
-  font-family: "Acumin Pro Condensed Black";
+  font-family: "Acumin Black";
   letter-spacing: 2px;
   margin: 0;
   padding: 0;
 }
 
-.firstSectionContentDiv h2{
+.firstSectionContentDiv h2 {
   font-size: 16px;
   color: white;
-  font-family: "Acumin Pro";
-  font-weight: normal;
+  font-family: "Acumin Regular";
   width: 30vw;
   padding-left: 2px;
   padding-top: 3vw;
@@ -47,25 +45,34 @@
 .secondSectionBody {
   height: 5vw;
   background-color: black;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.jkpgDistrictsLogo{
+.jkpgDistrictsLogo {
   width: 95%;
 }
 
-.thirdSectionBody{
+.navbar-current-title {
+  padding: 10px;
+  background-color: white;
+}
+
+.navbar-titles {
+  font-family: "Acumin Bold";
+}
+
+.thirdSectionBody {
   padding: 0;
   margin: 0;
   height: 60vw;
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 }
 
-.districtDiv{
+.districtDiv {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,16 +83,17 @@
 .districtCard {
   display: flex;
   align-items: center;
-  background-color: #89C5D9;
+  background-color: #89c5d9;
   padding-inline: 1vw;
   padding-block: 0.3vw;
   border-radius: 5px;
   gap: 1vw;
 }
 
-.districtCard h1, .categoryCard h1{
+.districtCard h1,
+.categoryCard h1 {
   font-size: 12px;
-  color: #4E4E4E;
+  color: #4e4e4e;
   font-family: "Acumin Pro";
   font-weight: bold;
   margin: 0;
@@ -99,7 +107,7 @@
   cursor: pointer;
 }
 
-.categoryDiv{
+.categoryDiv {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,17 +115,17 @@
   gap: 0.5vw;
 }
 
-.categoryCard{
+.categoryCard {
   display: flex;
   align-items: center;
-  background-color: #D9D0BC;
+  background-color: #d9d0bc;
   padding-inline: 1vw;
   padding-block: 0.3vw;
   border-radius: 5px;
   gap: 1vw;
 }
 
-.categoryTitleDiv{
+.categoryTitleDiv {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,7 +135,7 @@
   margin-top: 3vw;
 }
 
-.categoryTitleDiv h1{
+.categoryTitleDiv h1 {
   font-size: 27px;
   color: white;
   font-family: "Acumin Pro";
@@ -144,7 +152,7 @@
   gap: 1vw;
 }
 
-.accordion-row{
+.accordion-row {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -165,10 +173,10 @@
   align-items: center;
   padding: 1.5vw;
   cursor: pointer;
-  background-color: #D9D0BC;
+  background-color: #d9d0bc;
 }
 
-.accordion-header h3{
+.accordion-header h3 {
   font-size: 20px;
   color: black;
   font-family: "Acumin Pro";
@@ -184,7 +192,9 @@
 }
 
 .accordionArrow.open {
-  transform: rotate(180deg); /* Rotate the arrow icon when the accordion is open */
+  transform: rotate(
+    180deg
+  ); /* Rotate the arrow icon when the accordion is open */
 }
 
 .accordion-content {
@@ -203,23 +213,22 @@
   transition: visibility 0s, opacity 0.5s ease; /* Add transition only for opacity */
 }
 
-
-.accordion-content span{
+.accordion-content span {
   display: flex;
   align-items: center;
   gap: 1vw;
 }
 
-.accordion-content img{
+.accordion-content img {
   height: 2.5vw;
 }
 
-.accordion-content a{
+.accordion-content a {
   color: black;
   text-decoration: underline;
 }
 
-.accordion-content h1{
+.accordion-content h1 {
   font-size: 16px;
   color: black;
   font-family: "Acumin Pro";
@@ -229,14 +238,11 @@
 }
 
 #basic-nav-dropdown {
-    color: white;
+  color: white;
 }
 
 @media (max-width: 768px) {
   .accordion-item {
-    width: 100%; /* For smaller screens, show one item per row */
+    width: 100%;
   }
 }
-  
-  
-  

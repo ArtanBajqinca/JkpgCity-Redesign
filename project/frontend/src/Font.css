@@ -1,4 +1,4 @@
-@font-face{
+/* @font-face{
     font-family: "Acumin Pro Regular";
     src: url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.eot");
     src: url("https://db.onlinewebfonts.com/t/d693e286fcfd4dad6d34ff59cecf1514.eot?#iefix")format("embedded-opentype"),
@@ -27,4 +27,19 @@
     url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.woff")format("woff"),
     url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.ttf")format("truetype"),
     url("https://db.onlinewebfonts.com/t/2ad888075d277e8d11de6c816762be5e.svg#Acumin Pro Condensed Black")format("svg");
-  }
+  } */
+
+@font-face {
+  font-family: "Acumin Black";
+  src: url("./fonts/Acumin-Pro-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Acumin Regular";
+  src: url("./fonts/Acumin-Pro_Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Acumin Bold";
+  src: url("./fonts/Acumin-Pro-Bold.otf") format("opentype");
+}
