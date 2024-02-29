@@ -1,30 +1,45 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "./Font.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Data from "./companies.json";
-import React, { useState } from "react";
 import { IoIosArrowRoundUp } from "react-icons/io";
 
+async function fetchDistricts() {
+  const response = await fetch("http://localhost:3001/districts");
+  const districts = await response.json();
+  return districts;
+}
+
+// Main App Component
 function App() {
+  const [districts, setDistricts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const districts = await fetchDistricts();
+      setDistricts(districts);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <FirstSection />
-
       <SecondSection />
-
-      <ThirdSection />
+      <ThirdSection districts={districts} />
     </>
   );
 }
 
-function FirstSection() {
+// First Section including Navbar
+function FirstSection({ districts }) {
   return (
     <div className="firstSectionBody">
       <CustomNavbar />
-
       <div className="firstSectionContentDiv">
         <h1>REKREATION</h1>
-
         <h2>
           I Jönköpings stadskärna hittar du allt för att må bra, med ett stort
           utbud av olika gym, frisörer och salonger - allt för att skämma bort
@@ -35,8 +50,9 @@ function FirstSection() {
   );
 }
 
+// Custom Navbar Component
 function CustomNavbar() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -90,6 +106,7 @@ function CustomNavbar() {
   );
 }
 
+// Second Section Component
 function SecondSection() {
   return (
     <div className="secondSectionBody">
@@ -102,19 +119,30 @@ function SecondSection() {
   );
 }
 
-function ThirdSection() {
+// Third Section including Districts and Categories
+function ThirdSection({ districts }) {
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
-        <District className="districtName" name="TÄNDSTICKSOMRÅDET" />
-        <District className="districtName" name="STATIONEN" />
+        {districts.map((district, index) => (
+          <District
+            key={index}
+            name={district.toUpperCase()}
+            className="districtName"
+          />
+        ))}
+      </div>
+
+      {/* <div className="districtDiv">
         <District className="districtName" name="RÅDHUSPARKEN" />
-        <District className="districtName" name="HÖGSKOLAN" />
-        <District className="districtName" name="VÄSTER" />
         <District className="districtName" name="ATOLLEN" />
         <District className="districtName" name="ÖSTER" />
         <District className="districtName" name="KULTURHUSET SPIRA" />
-      </div>
+        <District className="districtName" name="HÖGSKOLAN" />
+        <District className="districtName" name="VÄSTER" />
+        <District className="districtName" name="STATIONEN" />
+        <District className="districtName" name="TÄNDSTICKSOMRÅDET" />
+      </div> */}
 
       <div className="categoryDiv">
         <Category name="GYM & TRÄNING" />
@@ -127,6 +155,7 @@ function ThirdSection() {
   );
 }
 
+// District Component
 function District(props) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -149,6 +178,7 @@ function District(props) {
   );
 }
 
+// Category Component
 function Category(props) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -171,16 +201,7 @@ function Category(props) {
   );
 }
 
-// function Category(props) {
-//   const [isChecked, setIsChecked] = useState(false);
-//   return (
-//     <div className="categoryCard">
-//       <h1>{props.name}</h1>
-//       <input type="checkbox" className="checkBox" />
-//     </div>
-//   );
-// }
-
+// Category Title Component
 function CategoryTitle(props) {
   return (
     <div className="categoryTitleDiv">
@@ -189,6 +210,7 @@ function CategoryTitle(props) {
   );
 }
 
+// Accordion List Component
 function AccordionList() {
   const groupedData = {
     trainingHealth: [],
@@ -196,7 +218,6 @@ function AccordionList() {
     massageSpa: [],
   };
 
-  // Filter data into respective categories
   Data.forEach((item) => {
     switch (item.type) {
       case "trainingHealth":
@@ -215,17 +236,14 @@ function AccordionList() {
 
   return (
     <div className="accordion-list">
-      {/* Render GYM & TRÄNING category */}
       <div className="accordion-category">
         <CategoryTitle name="GYM & TRÄNING" />
         <AccordionGroup items={groupedData.trainingHealth} />
       </div>
-      {/* Render SKÖNHET & FRISÖR category */}
       <div className="accordion-category">
         <CategoryTitle name="SKÖNHET & FRISÖR" />
         <AccordionGroup items={groupedData.salonBeauty} />
       </div>
-      {/* Render SPA & MASSAGE category */}
       <div className="accordion-category">
         <CategoryTitle name="SPA & MASSAGE" />
         <AccordionGroup items={groupedData.massageSpa} />
@@ -234,14 +252,14 @@ function AccordionList() {
   );
 }
 
+// Accordion Component
 function Accordion({ name, district, url }) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
 
-  // Function to select the appropriate icon based on the district
   const selectIcon = (district) => {
     switch (district) {
       case "rådhusparken":
@@ -278,14 +296,14 @@ function Accordion({ name, district, url }) {
       </div>
       <div className={`accordion-content ${isOpen ? "open" : ""}`}>
         <span>
-          {selectIcon(district)} {/* Render the selected icon */}
+          {selectIcon(district)}
           <h1>Distrikt: {district}</h1>
         </span>
-        <br></br>
+        <br />
         <span>
           <img src="./img/webIcon.svg" alt="webIcon" />
           <h1>
-            Hemsida: <a href={url}>{url}</a>{" "}
+            Hemsida: <a href={url}>{url}</a>
           </h1>
         </span>
       </div>
@@ -293,18 +311,17 @@ function Accordion({ name, district, url }) {
   );
 }
 
+// Accordion Group Component
 function AccordionGroup({ items }) {
   return (
-    <div className="accordion-list">
+    <div className="accordion-group">
       {items.map((item, index) => (
-        <div key={index} className="accordion-item">
-          <Accordion
-            key={index}
-            name={item.name}
-            district={item.district}
-            url={item.url}
-          />
-        </div>
+        <Accordion
+          key={index}
+          name={item.name}
+          district={item.district}
+          url={item.url}
+        />
       ))}
     </div>
   );

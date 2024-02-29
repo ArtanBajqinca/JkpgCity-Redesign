@@ -10,10 +10,14 @@ fetch("http://localhost:3001/")
   .then((companies) => console.log(companies))
   .catch((error) => console.error("Error:", error));
 
-fetch("http://localhost:3001/districts")
-  .then((response) => response.json())
-  .then((district) => console.log(district))
-  .catch((error) => console.error("Error:", error));
+// fetch("http://localhost:3001/districts")
+//   .then((response) => response.json())
+//   .then((district) => console.log(district))
+//   .catch((error) => console.error("Error:", error));
+
+// const response = await fetch("http://localhost:3001/districts");
+// const districts = await response.json();
+// console.log(districts);
 
 root.render(
   <React.StrictMode>

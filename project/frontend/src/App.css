@@ -146,9 +146,11 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-top: 3vw;
-  gap: 15px;
+  margin-top: 30px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
   width: 80%;
+  padding-bottom: 0px;
 }
 
 .districtName h1 {
@@ -165,7 +167,7 @@
 }
 
 .districtCard-Category {
-  background-color: #D9D0BC;
+  background-color: #d9d0bc;
 }
 
 .districtCard h1,
@@ -229,20 +231,13 @@
 
 .categoryDiv {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-top: 1vw;
-  gap: 0.5vw;
-}
-
-.categoryCard {
-  display: flex;
-  align-items: center;
-  background-color: #d9d0bc;
-  padding-inline: 1vw;
-  padding-block: 0.9vw;
-  border-radius: 5px;
-  gap: 1vw;
+  margin-top: 10px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  width: 80%;
 }
 
 .categoryTitleDiv {
@@ -251,10 +246,10 @@
   justify-content: center;
   background-color: #444444;
   padding-block: 1vw;
-  width: 75%;
-  margin-top: 3vw;
+  width: 75vw;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 30px;
 }
 
 .categoryTitleDiv h1 {
@@ -267,24 +262,21 @@
   padding: 0;
 }
 
-.accordion-list {
+.accordion-group {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1200px; /* Adjust max-width as needed */
-  width: 75%;
-  margin: 0 auto; /* Center the container horizontally */
-  margin-top: 2vw;
-  gap: 1vw;
+  width: 75vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  gap: 20px;
 }
 
 .accordion-row {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
 }
 
 .accordion-item {
-  width: 49%; /* Adjust as needed */
+  width: 49%;
   margin-bottom: 1rem;
 }
 
@@ -312,30 +304,30 @@
 }
 
 .accordionArrow {
-  font-size: 3vw; /* Adjust size as needed */
-  transition: transform 0.3s ease; /* Add a smooth transition for rotation */
+  font-size: 3vw;
+  transition: transform 0.3s ease;
 }
 
 .accordionArrow.open {
   transform: rotate(
     180deg
-  ); /* Rotate the arrow icon when the accordion is open */
+  );
 }
 
 .accordion-content {
   background-color: rgba(217, 208, 188, 0.5);
-  overflow: hidden; /* Hide content before expanding */
+  overflow: hidden;
   padding: 2vw;
-  box-sizing: border-box; /* Include padding in the element's total width and height */
+  box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s ease; /* Add transition only for opacity */
+  transition: visibility 0s, opacity 0.5s ease;
 }
 
 .accordion-content.open {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s ease; /* Add transition only for opacity */
+  transition: visibility 0s, opacity 0.5s ease;
 }
 
 .accordion-content span {
@@ -349,8 +341,10 @@
 }
 
 .accordion-content a {
+  display: block;
   color: black;
   text-decoration: underline;
+  width: 25vw;
 }
 
 .accordion-content h1 {
