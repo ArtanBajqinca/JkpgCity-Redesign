@@ -1,10 +1,9 @@
-import React from "react";
 import "./App.css";
 import "./Font.css";
-import { IoIosArrowRoundUp } from "react-icons/io";
-import Data from "./companies.json";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import Data from "./companies.json";
+import React, { useState } from "react";
+import { IoIosArrowRoundUp } from "react-icons/io";
 
 function App() {
   return (
@@ -50,7 +49,7 @@ function CustomNavbar() {
           <img src="./img/jkpgcity.svg" alt="jkpgCity" />
         </div>
         <div className="navbarLinks">
-          <a href="uptäck" className="Links">
+          <a href="uptäck" className="Links activeLink">
             UPPTÄCK
           </a>
           <a href="evenemang" className="Links">
@@ -107,14 +106,14 @@ function ThirdSection() {
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
-        <District name="TÄNDSTICKSOMRÅDET" />
-        <District name="STATIONEN" />
-        <District name="RÅDHUSPARKEN" />
-        <District name="HÖGSKOLAN" />
-        <District name="VÄSTER" />
-        <District name="ATOLLEN" />
-        <District name="ÖSTER" />
-        <District name="KULTURHUSET SPIRA" />
+        <District className="districtName" name="TÄNDSTICKSOMRÅDET" />
+        <District className="districtName" name="STATIONEN" />
+        <District className="districtName" name="RÅDHUSPARKEN" />
+        <District className="districtName" name="HÖGSKOLAN" />
+        <District className="districtName" name="VÄSTER" />
+        <District className="districtName" name="ATOLLEN" />
+        <District className="districtName" name="ÖSTER" />
+        <District className="districtName" name="KULTURHUSET SPIRA" />
       </div>
 
       <div className="categoryDiv">
@@ -129,22 +128,58 @@ function ThirdSection() {
 }
 
 function District(props) {
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
-    <div className="districtCard">
+    <div
+      className="districtCard customCheckbox"
+      onClick={() => setIsChecked(!isChecked)}
+      style={{ cursor: "pointer", position: "relative" }}
+    >
       <h1>{props.name}</h1>
-      <input type="checkbox" className="checkBox" />
+      <input
+        type="checkbox"
+        className="checkBox"
+        checked={isChecked}
+        onChange={(e) => e.stopPropagation()}
+        style={{ cursor: "pointer" }}
+      />
+      <span className="customCheckmark"></span>
     </div>
   );
 }
 
 function Category(props) {
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
-    <div className="categoryCard">
+    <div
+      className="districtCard customCheckbox districtCard-Category"
+      onClick={() => setIsChecked(!isChecked)}
+      style={{ cursor: "pointer", position: "relative" }}
+    >
       <h1>{props.name}</h1>
-      <input type="checkbox" className="checkBox" />
+      <input
+        type="checkbox"
+        className="checkBox"
+        checked={isChecked}
+        onChange={(e) => e.stopPropagation()}
+        style={{ cursor: "pointer" }}
+      />
+      <span className="customCheckmark"></span>
     </div>
   );
 }
+
+// function Category(props) {
+//   const [isChecked, setIsChecked] = useState(false);
+//   return (
+//     <div className="categoryCard">
+//       <h1>{props.name}</h1>
+//       <input type="checkbox" className="checkBox" />
+//     </div>
+//   );
+// }
 
 function CategoryTitle(props) {
   return (
