@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 #root {
   margin: 0 auto;
   padding: 0;
@@ -115,6 +119,10 @@
   height: 17px;
 }
 
+.Hamburger-menu:hover {
+  cursor: pointer;
+}
+
 .dropdownMenu {
   position: absolute;
   display: flex;
@@ -125,7 +133,7 @@
   width: 130px;
   text-align: left;
   gap: 20px;
-  top: 70px; /* Adjust the value to move the dropdown menu down */
+  top: 80px; /* Adjust the value to move the dropdown menu down */
 }
 
 .dropdownMenu a {
@@ -275,13 +283,9 @@
   display: flex;
 }
 
-.accordion-item {
-  width: 49%;
-  margin-bottom: 1rem;
-}
-
 .accordion {
   flex: 1;
+  width: 49%;
 }
 
 .accordion-header {
@@ -316,18 +320,19 @@
 
 .accordion-content {
   background-color: rgba(217, 208, 188, 0.5);
-  overflow: hidden;
   padding: 2vw;
-  box-sizing: border-box;
+  height: 0; /* Change this line */
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s ease;
+  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease; /* Add height to the transition */
+  overflow: hidden; /* Add this line to hide the overflow */
 }
 
 .accordion-content.open {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s ease;
+  height: 10rem; /* Add this line */
+  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease; /* Add height to the transition */
 }
 
 .accordion-content span {
@@ -360,8 +365,4 @@
   color: white;
 }
 
-@media (max-width: 768px) {
-  .accordion-item {
-    width: 100%;
-  }
-}
+

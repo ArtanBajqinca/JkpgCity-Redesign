@@ -133,17 +133,6 @@ function ThirdSection({ districts }) {
         ))}
       </div>
 
-      {/* <div className="districtDiv">
-        <District className="districtName" name="RÅDHUSPARKEN" />
-        <District className="districtName" name="ATOLLEN" />
-        <District className="districtName" name="ÖSTER" />
-        <District className="districtName" name="KULTURHUSET SPIRA" />
-        <District className="districtName" name="HÖGSKOLAN" />
-        <District className="districtName" name="VÄSTER" />
-        <District className="districtName" name="STATIONEN" />
-        <District className="districtName" name="TÄNDSTICKSOMRÅDET" />
-      </div> */}
-
       <div className="categoryDiv">
         <Category name="GYM & TRÄNING" />
         <Category name="SKÖNHET & FRISÖR" />
@@ -235,20 +224,20 @@ function AccordionList() {
   });
 
   return (
-    <div className="accordion-list">
-      <div className="accordion-category">
-        <CategoryTitle name="GYM & TRÄNING" />
-        <AccordionGroup items={groupedData.trainingHealth} />
-      </div>
-      <div className="accordion-category">
-        <CategoryTitle name="SKÖNHET & FRISÖR" />
-        <AccordionGroup items={groupedData.salonBeauty} />
-      </div>
-      <div className="accordion-category">
-        <CategoryTitle name="SPA & MASSAGE" />
-        <AccordionGroup items={groupedData.massageSpa} />
-      </div>
+  <div className="accordion-list">
+    <div className="accordion-category">
+      <CategoryTitle name="GYM & TRÄNING" />
+      <AccordionGroup items={groupedData.trainingHealth} />
     </div>
+    <div className="accordion-category">
+      <CategoryTitle name="SKÖNHET & FRISÖR" />
+      <AccordionGroup items={groupedData.salonBeauty} />
+    </div>
+    <div className="accordion-category">
+      <CategoryTitle name="SPA & MASSAGE" />
+      <AccordionGroup items={groupedData.massageSpa} />
+    </div>
+  </div>
   );
 }
 
