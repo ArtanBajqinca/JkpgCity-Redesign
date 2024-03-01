@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 #root {
   margin: 0 auto;
@@ -282,6 +282,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-bottom: -0px;
 }
 
 .accordion-header {
@@ -316,18 +317,20 @@
 .accordion-content {
   background-color: rgba(217, 208, 188, 0.5);
   padding: 2vw;
-  height: 0; /* Change this line */
+  height: 0;
+  margin-bottom: -60px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease; /* Add height to the transition */
-  overflow: hidden; /* Add this line to hide the overflow */
+  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease;
+  overflow: hidden;
 }
 
 .accordion-content.open {
   visibility: visible;
   opacity: 1;
-  height: 10rem; /* Add this line */
-  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease; /* Add height to the transition */
+  height: 10rem;
+  margin-bottom: 0px;
+  transition: visibility 0s, opacity 0.5s ease, height 0.5s ease;
 }
 
 .accordion-content span {
@@ -355,5 +358,3 @@
   margin: 0;
   padding: 0;
 }
-
-

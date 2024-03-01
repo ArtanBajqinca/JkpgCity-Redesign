@@ -139,7 +139,6 @@ function ThirdSection({ districts }) {
         <Category name="SKÖNHET & FRISÖR" />
         <Category name="SPA & MASSAGE" />
       </div>
-
       <AccordionList />
     </div>
   );
@@ -216,14 +215,14 @@ function AccordionList() {
   });
 
   return (
-  <div className="accordion-list">
+    <div className="accordion-list">
       <CategoryTitle name="GYM & TRÄNING" />
       <AccordionGroup items={groupedData.trainingHealth} />
       <CategoryTitle name="SKÖNHET & FRISÖR" />
       <AccordionGroup items={groupedData.salonBeauty} />
       <CategoryTitle name="SPA & MASSAGE" />
       <AccordionGroup items={groupedData.massageSpa} />
-  </div>
+    </div>
   );
 }
 
