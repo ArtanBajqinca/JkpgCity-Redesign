@@ -125,7 +125,7 @@
   width: 130px;
   text-align: left;
   gap: 20px;
-  top: 70px; /* Adjust the value to move the dropdown menu down */
+  top: 90px;
 }
 
 .dropdownMenu a {
@@ -309,9 +309,7 @@
 }
 
 .accordionArrow.open {
-  transform: rotate(
-    180deg
-  );
+  transform: rotate(180deg);
 }
 
 .accordion-content {
@@ -354,10 +352,6 @@
   font-weight: bold;
   margin: 0;
   padding: 0;
-}
-
-#basic-nav-dropdown {
-  color: white;
 }
 
 @media (max-width: 768px) {
