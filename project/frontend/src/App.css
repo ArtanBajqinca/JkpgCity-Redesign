@@ -265,7 +265,6 @@
   color: white;
   font-family: "Acumin Pro";
   font-weight: bold;
-
   margin: 0;
   padding: 0;
 }
@@ -279,13 +278,10 @@
   gap: 20px;
 }
 
-.accordion-row {
-  display: flex;
-}
-
 .accordion {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  width: 49%;
 }
 
 .accordion-header {

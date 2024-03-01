@@ -191,15 +191,6 @@ function Category(props) {
   );
 }
 
-// Category Title Component
-function CategoryTitle(props) {
-  return (
-    <div className="categoryTitleDiv">
-      <h1>{props.name}</h1>
-    </div>
-  );
-}
-
 // Accordion List Component
 function AccordionList() {
   const groupedData = {
@@ -239,6 +230,31 @@ function AccordionList() {
       <AccordionGroup items={groupedData.massageSpa} />
     </div>
   </div>
+  );
+}
+
+// Category Title Component
+function CategoryTitle(props) {
+  return (
+    <div className="categoryTitleDiv">
+      <h1>{props.name}</h1>
+    </div>
+  );
+}
+
+// Accordion Group Component
+function AccordionGroup({ items }) {
+  return (
+    <div className="accordion-group">
+      {items.map((item, index) => (
+        <Accordion
+          key={index}
+          name={item.name}
+          district={item.district}
+          url={item.url}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -297,22 +313,6 @@ function Accordion({ name, district, url }) {
           </h1>
         </span>
       </div>
-    </div>
-  );
-}
-
-// Accordion Group Component
-function AccordionGroup({ items }) {
-  return (
-    <div className="accordion-group">
-      {items.map((item, index) => (
-        <Accordion
-          key={index}
-          name={item.name}
-          district={item.district}
-          url={item.url}
-        />
-      ))}
     </div>
   );
 }
