@@ -302,7 +302,7 @@ function Accordion({ name, district, url }) {
         <span>
           <img src="./img/webIcon.svg" alt="webIcon" />
           <h1>
-            Hemsida: <a href={url}>{url}</a>
+            <a href={url}>{url}</a>
           </h1>
         </span>
       </div>
