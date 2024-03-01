@@ -217,18 +217,12 @@ function AccordionList() {
 
   return (
   <div className="accordion-list">
-    <div className="accordion-category">
       <CategoryTitle name="GYM & TRÄNING" />
       <AccordionGroup items={groupedData.trainingHealth} />
-    </div>
-    <div className="accordion-category">
       <CategoryTitle name="SKÖNHET & FRISÖR" />
       <AccordionGroup items={groupedData.salonBeauty} />
-    </div>
-    <div className="accordion-category">
       <CategoryTitle name="SPA & MASSAGE" />
       <AccordionGroup items={groupedData.massageSpa} />
-    </div>
   </div>
   );
 }

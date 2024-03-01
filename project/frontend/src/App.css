@@ -291,10 +291,11 @@
   padding: 1.5vw;
   cursor: pointer;
   background-color: #d9d0bc;
+  height: 4rem;
 }
 
 .accordion-header h3 {
-  font-size: 20px;
+  font-size: 1rem;
   color: black;
   font-family: "Acumin Pro";
   font-weight: bold;
@@ -304,7 +305,7 @@
 }
 
 .accordionArrow {
-  font-size: 3vw;
+  font-size: 2rem;
   transition: transform 0.3s ease;
 }
 
