@@ -3,31 +3,12 @@ const router = express.Router();
 const Model = require("./model.js");
 const companyJson = require("./companies.json");
 
+// Company Routes
 router.get("/", async (req, res) => {
   try {
     const companies = await Model.getAllCompanies();
     res.json(companies);
   } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-router.get("/districts", async (req, res) => {
-  const uniqueDistricts = await Model.getAllDistricts();
-  res.json(uniqueDistricts);
-});
-
-router.get("/setup", async (req, res) => {
-  try {
-    console.log();
-    console.log("Setting up database...");
-    console.log();
-
-    await Model.setupDatabase(companyJson);
-    console.log("Database setup complete!");
-    res.json({ success: true });
-  } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -45,6 +26,13 @@ router.get("/company/:id", async (req, res) => {
   }
 });
 
+// District Routes
+router.get("/districts", async (req, res) => {
+  const uniqueDistricts = await Model.getAllDistricts();
+  res.json(uniqueDistricts);
+});
+
+// Authentication Routes
 router.get("/login", (req, res) => {
   const { username, password } = req.query;
   if (username === "admin" && password === "password") {
@@ -66,6 +54,19 @@ router.get("/check-user-status", async (req, res) => {
     res.send("User is logged in");
   } else {
     res.send("User is not logged in");
+  }
+});
+
+// Database Setup Route
+router.get("/setup", async (req, res) => {
+  try {
+    console.log("Setting up database...");
+    await Model.setupDatabase(companyJson);
+    console.log("Database setup complete!");
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
   }
 });
 

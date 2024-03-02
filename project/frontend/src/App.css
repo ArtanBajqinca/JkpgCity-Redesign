@@ -1,9 +1,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-/* test 
-
-*/
 
 #root {
   margin: 0 auto;
@@ -12,7 +9,7 @@
 }
 
 .firstSectionBody {
-  background-image: url(../public/img/gym1.png);
+  background-image: url(../public/img/backgroundImage.png);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0;
