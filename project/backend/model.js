@@ -10,7 +10,7 @@ class ModelClass {
       user: "postgres",
       host: process.env.PG_HOST || "localhost",
       database: "postgres",
-     // password: process.env.PG_PASSWORD,
+      // password: process.env.PG_PASSWORD,
       password: "1234",
       port: 5432,
     });
@@ -94,13 +94,6 @@ class ModelClass {
         }
       }
     }
-  }
-
-  async getAllCategories() {
-    const res = await this.client.query(
-      "SELECT DISTINCT type FROM public.companies"
-    );
-    return res.rows.map((row) => row.type);
   }
 }
 
