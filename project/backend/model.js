@@ -2,25 +2,7 @@
 const { Client } = require("pg");
 require("dotenv").config();
 
-// ModelClass Definition
 class ModelClass {
-  // Constructor to initialize the database client
-  constructor() {
-    this.client = new Client({
-      user: "postgres",
-      host: process.env.PG_HOST || "localhost",
-      database: "postgres",
-      password: process.env.PG_PASSWORD,
-      // password: "1234",
-      port: 5432,
-    });
-  }
-
-  // Initialize database connection
-  async init() {
-    await this.client.connect();
-  }
-
   // Retrieve all companies from the database
   async getAllCompanies() {
     const res = await this.client.query("SELECT * FROM public.companies");
@@ -52,9 +34,26 @@ class ModelClass {
     return res.rows.map((row) => row.type);
   }
 
-  /////////////////////////////////////////////////
-  // D A T A B A S E   S E T U P   M E T H O D S //
-  /////////////////////////////////////////////////
+  ///////////////////////////////////
+  //  D A T A B A S E   S E T U P  //
+  ///////////////////////////////////
+
+  // Constructor to initialize the database client
+  constructor() {
+    this.client = new Client({
+      user: "postgres",
+      host: process.env.PG_HOST || "localhost",
+      database: "postgres",
+      password: process.env.PG_PASSWORD,
+      // password: "1234", // for Abdullahi
+      port: 5432,
+    });
+  }
+
+  // Initialize database connection
+  async init() {
+    await this.client.connect();
+  }
 
   // Setup database tables and insert initial data
   async setupDatabase(companyJson) {
@@ -94,13 +93,6 @@ class ModelClass {
         }
       }
     }
-  }
-
-  async getAllCategories() {
-    const res = await this.client.query(
-      "SELECT DISTINCT type FROM public.companies"
-    );
-    return res.rows.map((row) => row.type);
   }
 }
 

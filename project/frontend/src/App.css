@@ -116,7 +116,9 @@
 }
 
 .Hamburger-menu img {
+  display: flex;
   height: 17px;
+  margin-bottom: 5px;
 }
 
 .Hamburger-menu:hover {
@@ -258,7 +260,8 @@
   padding-block: 15px;
   width: 75vw;
   margin: 0 auto;
-  margin-block: 50px;
+  margin-top: 50px;
+  margin-bottom: 0px;
 }
 
 .categoryTitleDiv h1 {
@@ -276,7 +279,7 @@
   flex-wrap: wrap;
   width: 75vw;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 20px;
   gap: 20px;
 }
 
