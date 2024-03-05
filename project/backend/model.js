@@ -20,6 +20,41 @@ class ModelClass {
     await this.client.connect();
   }
 
+  // Retrieve all companies from the database
+  async getAllCompanies() {
+    const res = await this.client.query("SELECT * FROM public.companies");
+    return res.rows;
+  }
+
+  // Retrieve a single company by its ID
+  async getCompany(id) {
+    const res = await this.client.query(
+      "SELECT * FROM public.companies WHERE id = $1",
+      [id]
+    );
+    return res.rows[0];
+  }
+
+  // Retrieve all distinct districts from the companies table
+  async getAllDistricts() {
+    const res = await this.client.query(
+      "SELECT DISTINCT district FROM public.companies"
+    );
+    return res.rows.map((row) => row.district);
+  }
+
+  // Retrieve all distinct categories from the companies table
+  async getAllCategories() {
+    const res = await this.client.query(
+      "SELECT DISTINCT type FROM public.companies"
+    );
+    return res.rows.map((row) => row.type);
+  }
+
+  /////////////////////////////////////////////////
+  // D A T A B A S E   S E T U P   M E T H O D S //
+  /////////////////////////////////////////////////
+
   // Setup database tables and insert initial data
   async setupDatabase(companyJson) {
     // Create companies table if it doesn't exist
@@ -58,29 +93,6 @@ class ModelClass {
         }
       }
     }
-  }
-
-  // Retrieve all companies from the database
-  async getAllCompanies() {
-    const res = await this.client.query("SELECT * FROM public.companies");
-    return res.rows;
-  }
-
-  // Retrieve a single company by its ID
-  async getCompany(id) {
-    const res = await this.client.query(
-      "SELECT * FROM public.companies WHERE id = $1",
-      [id]
-    );
-    return res.rows[0];
-  }
-
-  // Retrieve all distinct districts from the companies table
-  async getAllDistricts() {
-    const res = await this.client.query(
-      "SELECT DISTINCT district FROM public.companies"
-    );
-    return res.rows.map((row) => row.district);
   }
 }
 
