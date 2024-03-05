@@ -8,16 +8,20 @@ import { IoIosArrowRoundUp } from "react-icons/io";
 // Main App Component
 function App() {
   const [districts, setDistricts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]); //1. State for categories
+
 
   useEffect(() => {
     const fetchData = async () => {
-      const districts = await fetchDistricts();
-      const categories = await fetchCategories();
 
-      setDistricts(districts);
-      setCategories(categories);
+    const districts = await fetchDistricts();
+    const categories = await fetchCategories(); //2. Fetch categories
+
+    setDistricts(districts);
+    setCategories(categories); //3. Store categories in state
+
     };
+
 
     fetchData();
   }, []);
@@ -45,6 +49,19 @@ function App() {
   );
 }
 
+// fetches districts from the backend
+async function fetchDistricts() {
+  const response = await fetch("http://localhost:3001/districts");
+  const districts = await response.json();
+  return districts;
+}
+// fetches categories from the backend
+async function fetchCategories() {
+  const response = await fetch("http://localhost:3001/categories");
+  const categories = await response.json();
+  return categories;
+}
+
 // First Section including Navbar
 function FirstSection() {
   return (
@@ -58,46 +75,6 @@ function FirstSection() {
           dig själv.
         </h2>
       </div>
-    </div>
-  );
-}
-
-// Second Section Component
-function SecondSection() {
-  return (
-    <div className="secondSectionBody">
-      <img
-        src="./img/jkpgDistricts.svg"
-        alt="jkpgcity districts"
-        className="jkpgDistrictsLogo"
-      />
-    </div>
-  );
-}
-
-function ThirdSection({ districts, categories }) {
-  return (
-    <div className="thirdSectionBody">
-      <div className="districtDiv">
-        {districts.map((district, index) => (
-          <District
-            key={index}
-            name={district.toUpperCase()}
-            className="districtName"
-          />
-        ))}
-      </div>
-
-      <div className="categoryDiv">
-        {categories.map((category, index) => (
-          <Category
-            key={index}
-            name={category.toUpperCase()}
-            className="categoryName"
-          />
-        ))}
-      </div>
-      <AccordionList />
     </div>
   );
 }
@@ -154,6 +131,46 @@ function CustomNavbar() {
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+// Second Section Component
+function SecondSection() {
+  return (
+    <div className="secondSectionBody">
+      <img
+        src="./img/jkpgDistricts.svg"
+        alt="jkpgcity districts"
+        className="jkpgDistrictsLogo"
+      />
+    </div>
+  );
+}
+
+function ThirdSection({ districts, categories }) {
+  return (
+    <div className="thirdSectionBody">
+      <div className="districtDiv">
+        {districts.map((district, index) => (
+          <District
+            key={index}
+            name={district.toUpperCase()}
+            className="districtName"
+          />
+        ))}
+      </div>
+      
+   <div className="categoryDiv">
+    { categories.map((category, index)=>(
+      <Category 
+      key={index} 
+      name={category.toUpperCase()}
+      className = "categoryName" 
+      />
+    ))}
+   </div>
+      <AccordionList />
     </div>
   );
 }
