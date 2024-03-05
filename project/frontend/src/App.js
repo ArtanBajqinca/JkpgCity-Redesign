@@ -10,18 +10,14 @@ function App() {
   const [districts, setDistricts] = useState([]);
   const [categories, setCategories] = useState([]); //1. State for categories
 
-
   useEffect(() => {
     const fetchData = async () => {
+      const districts = await fetchDistricts();
+      const categories = await fetchCategories(); //2. Fetch categories
 
-    const districts = await fetchDistricts();
-    const categories = await fetchCategories(); //2. Fetch categories
-
-    setDistricts(districts);
-    setCategories(categories); //3. Store categories in state
-
+      setDistricts(districts);
+      setCategories(categories); //3. Store categories in state
     };
-
 
     fetchData();
   }, []);
@@ -47,19 +43,6 @@ function App() {
       <ThirdSection districts={districts} categories={categories} />
     </>
   );
-}
-
-// fetches districts from the backend
-async function fetchDistricts() {
-  const response = await fetch("http://localhost:3001/districts");
-  const districts = await response.json();
-  return districts;
-}
-// fetches categories from the backend
-async function fetchCategories() {
-  const response = await fetch("http://localhost:3001/categories");
-  const categories = await response.json();
-  return categories;
 }
 
 // First Section including Navbar
@@ -160,17 +143,17 @@ function ThirdSection({ districts, categories }) {
           />
         ))}
       </div>
-      
-   <div className="categoryDiv">
-    { categories.map((category, index)=>(
-      <Category 
-      key={index} 
-      name={category.toUpperCase()}
-      className = "categoryName" 
-      />
-    ))}
-   </div>
-      <AccordionList />
+
+      <div className="categoryDiv">
+        {categories.map((category, index) => (
+          <Category
+            key={index}
+            name={category.toUpperCase()}
+            className="categoryName"
+          />
+        ))}
+      </div>
+      <AccordionList categories={categories} />
     </div>
   );
 }
@@ -222,7 +205,7 @@ function Category(props) {
 }
 
 // Accordion List Component
-function AccordionList() {
+function AccordionList({ categories }) {
   const groupedData = {
     trainingHealth: [],
     salonBeauty: [],
@@ -247,12 +230,12 @@ function AccordionList() {
 
   return (
     <div className="accordion-list">
-      <CategoryTitle name="GYM & TRÄNING" />
-      <AccordionGroup items={groupedData.trainingHealth} />
-      <CategoryTitle name="SKÖNHET & FRISÖR" />
-      <AccordionGroup items={groupedData.salonBeauty} />
-      <CategoryTitle name="SPA & MASSAGE" />
-      <AccordionGroup items={groupedData.massageSpa} />
+      {categories.map((category, index) => (
+        <>
+          <CategoryTitle name={category.toUpperCase()} key={index} />
+          {/* <AccordionGroup items={groupedData[category]} /> */}
+        </>
+      ))}
     </div>
   );
 }
