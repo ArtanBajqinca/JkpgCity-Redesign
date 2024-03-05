@@ -16,6 +16,7 @@ function App() {
 
     const districts = await fetchDistricts();
     const categories = await fetchCategories(); //2. Fetch categories
+
     setDistricts(districts);
     setCategories(categories); //3. Store categories in state
 
@@ -29,7 +30,6 @@ function App() {
       <FirstSection />
       <SecondSection />
       <ThirdSection districts={districts} categories={categories} />
-      console.log(categories);
     </>
   );
 }
@@ -39,6 +39,12 @@ async function fetchDistricts() {
   const response = await fetch("http://localhost:3001/districts");
   const districts = await response.json();
   return districts;
+}
+// fetches categories from the backend
+async function fetchCategories() {
+  const response = await fetch("http://localhost:3001/categories");
+  const categories = await response.json();
+  return categories;
 }
 
 // First Section including Navbar
@@ -127,8 +133,7 @@ function SecondSection() {
   );
 }
 
-// Third Section including Districts and Categories
-function ThirdSection({ districts, categories }) { // accept categories as propt
+function ThirdSection({ districts, categories }) {
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -140,13 +145,7 @@ function ThirdSection({ districts, categories }) { // accept categories as propt
           />
         ))}
       </div>
-
-     {/* <div className="categoryDiv">
-        <Category name="GYM & TRÄNING" />
-        <Category name="SKÖNHET & FRISÖR" />
-        <Category name="SPA & MASSAGE" />
-      </div> */}
-
+      
    <div className="categoryDiv">
     { categories.map((category, index)=>(
       <Category 
@@ -158,7 +157,6 @@ function ThirdSection({ districts, categories }) { // accept categories as propt
    </div>
       <AccordionList />
     </div>
-
   );
 }
 
