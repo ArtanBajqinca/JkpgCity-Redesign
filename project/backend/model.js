@@ -96,11 +96,12 @@ class ModelClass {
     }
   }
 
-  async getAllCategories(){
-    const res = await this.client.query("SELECT DISTINCT type FROM public.companies");
-    return res.rows.map(row => row.type);
+  async getAllCategories() {
+    const res = await this.client.query(
+      "SELECT DISTINCT type FROM public.companies"
+    );
+    return res.rows.map((row) => row.type);
   }
-
 }
 
 // Export an instance of the ModelClass
