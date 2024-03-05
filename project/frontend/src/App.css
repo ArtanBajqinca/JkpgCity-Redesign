@@ -2,8 +2,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+/* test 
 
-/* Global styles */
+*/
+
 #root {
   margin: 0 auto;
   padding: 0;
