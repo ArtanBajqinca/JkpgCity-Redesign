@@ -18,15 +18,18 @@ function App() {
       setDistricts(districts);
       setCategories(categories);
     };
+
     fetchData();
   }, []);
 
+  // Fetch districts from the backend
   async function fetchDistricts() {
     const response = await fetch("http://localhost:3001/districts");
     const districts = await response.json();
     return districts;
   }
 
+  // Fetch categories from the backend
   async function fetchCategories() {
     const response = await fetch("http://localhost:3001/categories");
     const categories = await response.json();

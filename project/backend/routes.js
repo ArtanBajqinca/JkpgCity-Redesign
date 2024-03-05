@@ -3,7 +3,6 @@ const router = express.Router();
 const Model = require("./model.js");
 const companyJson = require("./companies.json");
 
-// Company Routes
 router.get("/", async (req, res) => {
   try {
     const companies = await Model.getAllCompanies();
@@ -13,6 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get a single company by its ID
 router.get("/company/:id", async (req, res) => {
   try {
     const company = await Model.getCompany(req.params.id);
@@ -26,13 +26,19 @@ router.get("/company/:id", async (req, res) => {
   }
 });
 
-// District Routes
+// Get all unique districts
 router.get("/districts", async (req, res) => {
   const uniqueDistricts = await Model.getAllDistricts();
   res.json(uniqueDistricts);
 });
 
-// Authentication Routes
+// Get all unique categories
+router.get("/categories", async (req, res) => {
+  const uniqueCategories = await Model.getAllCategories();
+  res.json(uniqueCategories);
+});
+
+// Login Routes
 router.get("/login", (req, res) => {
   const { username, password } = req.query;
   if (username === "admin" && password === "password") {

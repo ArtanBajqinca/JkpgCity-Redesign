@@ -10,8 +10,8 @@ class ModelClass {
       user: "postgres",
       host: process.env.PG_HOST || "localhost",
       database: "postgres",
-      // password: process.env.PG_PASSWORD,
-      password: "1234",
+      password: process.env.PG_PASSWORD,
+      // password: "1234",
       port: 5432,
     });
   }
