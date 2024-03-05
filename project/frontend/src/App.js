@@ -2,25 +2,33 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "./Font.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Data from "./companies.json";
 import { IoIosArrowRoundUp } from "react-icons/io";
 
-// Main App Component
 function App() {
   const [districts, setDistricts] = useState([]);
-  const [categories, setCategories] = useState([]); //1. State for categories
+  const [categories, setCategories] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const districts = await fetchDistricts();
-      const categories = await fetchCategories(); //2. Fetch categories
+      const categories = await fetchCategories();
+      const companies = await fetchCompanies();
 
       setDistricts(districts);
-      setCategories(categories); //3. Store categories in state
+      setCategories(categories);
+      setCompanies(companies);
     };
 
     fetchData();
   }, []);
+
+  // Fetch companies from the backend
+  async function fetchCompanies() {
+    const response = await fetch("http://localhost:3001/companies");
+    const companies = await response.json();
+    return companies;
+  }
 
   // Fetch districts from the backend
   async function fetchDistricts() {
@@ -40,7 +48,11 @@ function App() {
     <>
       <FirstSection />
       <SecondSection />
-      <ThirdSection districts={districts} categories={categories} />
+      <ThirdSection
+        districts={districts}
+        categories={categories}
+        companies={companies}
+      />
     </>
   );
 }
@@ -58,6 +70,46 @@ function FirstSection() {
           dig själv.
         </h2>
       </div>
+    </div>
+  );
+}
+
+// Second Section Component
+function SecondSection() {
+  return (
+    <div className="secondSectionBody">
+      <img
+        src="./img/jkpgDistricts.svg"
+        alt="jkpgcity districts"
+        className="jkpgDistrictsLogo"
+      />
+    </div>
+  );
+}
+
+function ThirdSection({ districts, categories, companies }) {
+  return (
+    <div className="thirdSectionBody">
+      <div className="districtDiv">
+        {districts.map((district, index) => (
+          <District
+            key={index}
+            name={district.toUpperCase()}
+            className="districtName"
+          />
+        ))}
+      </div>
+
+      <div className="categoryDiv">
+        {categories.map((category, index) => (
+          <Category
+            key={index}
+            name={category.toUpperCase()}
+            className="categoryName"
+          />
+        ))}
+      </div>
+      <AccordionList categories={categories} companies={companies} />
     </div>
   );
 }
@@ -118,46 +170,6 @@ function CustomNavbar() {
   );
 }
 
-// Second Section Component
-function SecondSection() {
-  return (
-    <div className="secondSectionBody">
-      <img
-        src="./img/jkpgDistricts.svg"
-        alt="jkpgcity districts"
-        className="jkpgDistrictsLogo"
-      />
-    </div>
-  );
-}
-
-function ThirdSection({ districts, categories }) {
-  return (
-    <div className="thirdSectionBody">
-      <div className="districtDiv">
-        {districts.map((district, index) => (
-          <District
-            key={index}
-            name={district.toUpperCase()}
-            className="districtName"
-          />
-        ))}
-      </div>
-
-      <div className="categoryDiv">
-        {categories.map((category, index) => (
-          <Category
-            key={index}
-            name={category.toUpperCase()}
-            className="categoryName"
-          />
-        ))}
-      </div>
-      <AccordionList categories={categories} />
-    </div>
-  );
-}
-
 // District Component
 function District(props) {
   const [isChecked, setIsChecked] = useState(false);
@@ -205,36 +217,19 @@ function Category(props) {
 }
 
 // Accordion List Component
-function AccordionList({ categories }) {
-  const groupedData = {
-    trainingHealth: [],
-    salonBeauty: [],
-    massageSpa: [],
-  };
-
-  Data.forEach((item) => {
-    switch (item.type) {
-      case "trainingHealth":
-        groupedData.trainingHealth.push(item);
-        break;
-      case "salonBeauty":
-        groupedData.salonBeauty.push(item);
-        break;
-      case "massageSpa":
-        groupedData.massageSpa.push(item);
-        break;
-      default:
-        break;
-    }
-  });
+function AccordionList({ categories, companies }) {
+  const groupedData = categories.reduce((acc, category) => {
+    acc[category] = companies.filter((company) => company.type === category);
+    return acc;
+  }, {});
 
   return (
     <div className="accordion-list">
       {categories.map((category, index) => (
-        <>
-          <CategoryTitle name={category.toUpperCase()} key={index} />
-          {/* <AccordionGroup items={groupedData[category]} /> */}
-        </>
+        <React.Fragment key={index}>
+          <CategoryTitle name={category.toUpperCase()} />
+          <AccordionGroup items={groupedData[category]} />
+        </React.Fragment>
       ))}
     </div>
   );

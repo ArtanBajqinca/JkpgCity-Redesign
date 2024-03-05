@@ -3,7 +3,8 @@ const router = express.Router();
 const Model = require("./model.js");
 const companyJson = require("./companies.json");
 
-router.get("/", async (req, res) => {
+// Get all companies
+router.get("/companies", async (_req, res) => {
   try {
     const companies = await Model.getAllCompanies();
     res.json(companies);

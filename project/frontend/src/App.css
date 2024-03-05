@@ -61,7 +61,7 @@
 }
 
 .jkpgDistrictsLogo {
-  width: 95%;
+  max-width: 90%;
 }
 
 /* Navbar styles */
@@ -245,7 +245,6 @@
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 20px;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   width: 80%;
@@ -256,11 +255,10 @@
   align-items: center;
   justify-content: center;
   background-color: #444444;
-  padding-block: 1vw;
+  padding-block: 15px;
   width: 75vw;
-  max-width: 1200px;
   margin: 0 auto;
-  margin-top: 4vh;
+  margin-block: 50px;
 }
 
 .categoryTitleDiv h1 {
@@ -331,7 +329,7 @@
 .accordion-content.open {
   visibility: visible;
   opacity: 1;
-  height: 9rem;
+  height: 100%;
   margin-bottom: 0px;
   transition: visibility 0s, opacity 0.5s ease, height 0.5s ease;
 }
