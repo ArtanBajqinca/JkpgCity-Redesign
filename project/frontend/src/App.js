@@ -5,25 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Data from "./companies.json";
 import { IoIosArrowRoundUp } from "react-icons/io";
 
-
-
-//1. Fetches categories from the backend
-
-async function fetchCategories() {
-  const response = await fetch("http://localhost:3001/categories");
-  const categories = await response.json();
-  return categories;
-}
-
-// fetches districts from the backend
-
-async function fetchDistricts() {
-  const response = await fetch("http://localhost:3001/districts");
-  const districts = await response.json();
-  return districts;
-}
-
-
 // Main App Component
 function App() {
   const [districts, setDistricts] = useState([]);
@@ -53,8 +34,15 @@ function App() {
   );
 }
 
+// fetches districts from the backend
+async function fetchDistricts() {
+  const response = await fetch("http://localhost:3001/districts");
+  const districts = await response.json();
+  return districts;
+}
+
 // First Section including Navbar
-function FirstSection({ districts }) {
+function FirstSection() {
   return (
     <div className="firstSectionBody">
       <CustomNavbar />

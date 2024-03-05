@@ -1,7 +1,10 @@
+// External Module Imports
 const { Client } = require("pg");
 require("dotenv").config();
 
+// ModelClass Definition
 class ModelClass {
+  // Constructor to initialize the database client
   constructor() {
     this.client = new Client({
       user: "postgres",
@@ -13,11 +16,14 @@ class ModelClass {
     });
   }
 
+  // Initialize database connection
   async init() {
     await this.client.connect();
   }
 
+  // Setup database tables and insert initial data
   async setupDatabase(companyJson) {
+    // Create companies table if it doesn't exist
     await this.client.query(`
       CREATE TABLE IF NOT EXISTS public.companies
       (
@@ -29,26 +35,23 @@ class ModelClass {
           CONSTRAINT companies_pkey PRIMARY KEY (id)
       )`);
 
+    // Set table ownership (might not be necessary for every deployment)
     await this.client.query(`
       ALTER TABLE IF EXISTS public.companies
           OWNER to postgres
     `);
 
+    // Insert companies from JSON if they don't already exist
     for (const company of companyJson) {
       const { rows } = await this.client.query(
-        `
-        SELECT * FROM public.companies WHERE name = $1
-        `,
+        "SELECT * FROM public.companies WHERE name = $1",
         [company.name]
       );
 
       if (rows.length === 0) {
         try {
           await this.client.query(
-            `
-            INSERT INTO public.companies (name, url, district, type)
-            VALUES ($1, $2, $3, $4)
-            `,
+            "INSERT INTO public.companies (name, url, district, type) VALUES ($1, $2, $3, $4)",
             [company.name, company.url, company.district, company.type]
           );
         } catch (error) {
@@ -58,11 +61,13 @@ class ModelClass {
     }
   }
 
+  // Retrieve all companies from the database
   async getAllCompanies() {
     const res = await this.client.query("SELECT * FROM public.companies");
     return res.rows;
   }
 
+  // Retrieve a single company by its ID
   async getCompany(id) {
     const res = await this.client.query(
       "SELECT * FROM public.companies WHERE id = $1",
@@ -71,9 +76,12 @@ class ModelClass {
     return res.rows[0];
   }
 
+  // Retrieve all distinct districts from the companies table
   async getAllDistricts() {
-    const res = await this.client.query("SELECT DISTINCT district FROM public.companies");
-    return res.rows.map(row => row.district);
+    const res = await this.client.query(
+      "SELECT DISTINCT district FROM public.companies"
+    );
+    return res.rows.map((row) => row.district);
   }
 
   async getAllCategories(){
@@ -83,4 +91,5 @@ class ModelClass {
 
 }
 
+// Export an instance of the ModelClass
 module.exports = new ModelClass();
