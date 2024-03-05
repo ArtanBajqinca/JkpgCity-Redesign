@@ -5,21 +5,39 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Data from "./companies.json";
 import { IoIosArrowRoundUp } from "react-icons/io";
 
+
+
+//1. Fetches categories from the backend
+
+async function fetchCategories() {
+  const response = await fetch("http://localhost:3001/categories");
+  const categories = await response.json();
+  return categories;
+}
+
 // fetches districts from the backend
+
 async function fetchDistricts() {
   const response = await fetch("http://localhost:3001/districts");
   const districts = await response.json();
   return districts;
 }
 
+
 // Main App Component
 function App() {
   const [districts, setDistricts] = useState([]);
+  const [categories, setCategories] = useState([]); //1. State for categories
+
 
   useEffect(() => {
     const fetchData = async () => {
-      const districts = await fetchDistricts();
-      setDistricts(districts);
+
+    const districts = await fetchDistricts();
+    const categories = await fetchCategories(); //2. Fetch categories
+    setDistricts(districts);
+    setCategories(categories); //3. Store categories in state
+
     };
 
     fetchData();
@@ -29,7 +47,8 @@ function App() {
     <>
       <FirstSection />
       <SecondSection />
-      <ThirdSection districts={districts} />
+      <ThirdSection districts={districts} categories={categories} />
+      console.log(categories);
     </>
   );
 }
@@ -121,7 +140,7 @@ function SecondSection() {
 }
 
 // Third Section including Districts and Categories
-function ThirdSection({ districts }) {
+function ThirdSection({ districts, categories }) { // accept categories as propt
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -134,13 +153,24 @@ function ThirdSection({ districts }) {
         ))}
       </div>
 
-      <div className="categoryDiv">
+     {/* <div className="categoryDiv">
         <Category name="GYM & TRÄNING" />
         <Category name="SKÖNHET & FRISÖR" />
         <Category name="SPA & MASSAGE" />
-      </div>
+      </div> */}
+
+   <div className="categoryDiv">
+    { categories.map((category, index)=>(
+      <Category 
+      key={index} 
+      name={category.toUpperCase()}
+      className = "categoryName" 
+      />
+    ))}
+   </div>
       <AccordionList />
     </div>
+
   );
 }
 

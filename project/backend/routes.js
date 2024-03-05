@@ -11,12 +11,15 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+// hämta districts
 router.get("/districts", async (req, res) => {
   const uniqueDistricts = await Model.getAllDistricts();
   res.json(uniqueDistricts);
 });
-
+router.get("/categories", async(req,res)=>{
+  const allCategories = await Model.getAllCategories();
+  res.json(allCategories);
+})
 router.get("/setup", async (req, res) => {
   try {
     console.log();
