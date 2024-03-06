@@ -90,6 +90,7 @@ function SecondSection() {
 function ThirdSection({ districts, categories, companies }) {
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [clearDistricts, setClearDistricts] = useState(false); // State to track whether districts should be cleared
 
   const handleDistrictSelect = (district) => {
     if (selectedDistricts.includes(district)) {
@@ -107,9 +108,25 @@ function ThirdSection({ districts, categories, companies }) {
     }
   };
 
+  const handleClearDistricts = () => {
+    setSelectedDistricts([]); // Clear selected districts
+    setClearDistricts(true); // Update state to trigger re-render
+    setTimeout(() => {
+      setClearDistricts(false); // Reset clearDistricts state after a short delay
+    }, 100);
+  };
+
   const filteredCompanies = companies.filter((company) => {
-    const districtFilterPassed = selectedDistricts.length > 0 ? selectedDistricts.includes(company.district) : true;
-    const categoryFilterPassed = selectedCategories.length > 0 ? (company.category ? selectedCategories.includes(company.category.toLowerCase()) : false) : true;
+    const districtFilterPassed =
+      selectedDistricts.length > 0
+        ? selectedDistricts.includes(company.district)
+        : true;
+    const categoryFilterPassed =
+      selectedCategories.length > 0
+        ? company.category
+          ? selectedCategories.includes(company.category.toLowerCase())
+          : false
+        : true;
     return districtFilterPassed && categoryFilterPassed;
   });
 
@@ -120,22 +137,25 @@ function ThirdSection({ districts, categories, companies }) {
           <District
             key={index}
             name={district.toUpperCase()}
-            className="districtName"
-            onDistrictSelect={() => handleDistrictSelect(district)} // Update onClick handler
+            isChecked={clearDistricts ? false : selectedDistricts.includes(district)} // Pass isChecked state and update it based on clearDistricts state
+            onDistrictSelect={() => handleDistrictSelect(district)}
           />
         ))}
       </div>
 
-      <div className="categoryDiv">
+      {/* <div className="categoryDiv">
         {categories.map((category, index) => (
           <Category
             key={index}
             name={category.toUpperCase()}
             className="categoryName"
-            onCategorySelect={() => handleCategorySelect(category)} // Update onClick handler
+            onCategorySelect={() => handleCategorySelect(category)}
           />
         ))}
-      </div>
+      </div> */}
+
+      <button className="clearDistrictButton" onClick={handleClearDistricts}>Rensa Distrikt</button>
+
       <AccordionList categories={categories} companies={filteredCompanies} />
     </div>
   );
@@ -199,10 +219,8 @@ function CustomNavbar() {
 }
 
 // District Component
-function District({ name, onDistrictSelect }) {
-  const [isChecked, setIsChecked] = useState(false);
+function District({ name, isChecked, onDistrictSelect }) {
   const handleClick = () => {
-    setIsChecked(!isChecked);
     onDistrictSelect(name); // Add this line
   };
 
@@ -224,6 +242,7 @@ function District({ name, onDistrictSelect }) {
     </div>
   );
 }
+
 
 // Category Component
 function Category({ name, onCategorySelect }) {
