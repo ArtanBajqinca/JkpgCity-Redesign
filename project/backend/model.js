@@ -4,8 +4,24 @@ require("dotenv").config();
 
 class ModelClass {
   // Retrieve all companies from the database
-  async getAllCompanies() {
-    const res = await this.client.query("SELECT * FROM public.companies");
+  async getAllCompanies(district, category) {
+    let query = "SELECT * FROM public.companies";
+    const values = [];
+  
+    if (district || category) {
+      query += " WHERE";
+      if (district) {
+        values.push(district);
+        query += ` district = $${values.length}`;
+      }
+      if (category) {
+        values.push(category);
+        if (district) query += " AND";
+        query += ` type = $${values.length}`;
+      }
+    }
+  
+    const res = await this.client.query(query, values);
     return res.rows;
   }
 

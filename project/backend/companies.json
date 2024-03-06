@@ -26,7 +26,7 @@
   {
     "name": "Barberaria 96",
     "url": "barberaria96.se",
-    "district": "väster",
+    "district": "rådhusparken",
     "type": "SKÖNHET & FRISÖR"
   },
   {
@@ -80,7 +80,7 @@
   {
     "name": "Fitness24Seven Jönköping centrum",
     "url": "fitness24seven.com/vara-gym/se-vara-gym/jonkoping-centrum",
-    "district": "öster",
+    "district": "stationen",
     "type": "GYM & TRÄNING"
   },
   {
@@ -392,7 +392,7 @@
   {
     "name": "Nordic Wellness Jönköping Campus",
     "url": "nordicwellness.se/vara-klubbar/jonkoping/jonkoping-campus",
-    "district": "väster",
+    "district": "högskolan",
     "type": "GYM & TRÄNING"
   },
   {

@@ -19,6 +19,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@types/pg": "^8.11.2",
     "concurrently": "^8.2.2"
   }
 }

@@ -88,6 +88,31 @@ function SecondSection() {
 }
 
 function ThirdSection({ districts, categories, companies }) {
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const handleDistrictSelect = (district) => {
+    if (selectedDistricts.includes(district)) {
+      setSelectedDistricts(selectedDistricts.filter((d) => d !== district));
+    } else {
+      setSelectedDistricts([...selectedDistricts, district]);
+    }
+  };
+
+  const handleCategorySelect = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
+  const filteredCompanies = companies.filter((company) => {
+    const districtFilterPassed = selectedDistricts.length > 0 ? selectedDistricts.includes(company.district) : true;
+    const categoryFilterPassed = selectedCategories.length > 0 ? (company.category ? selectedCategories.includes(company.category.toLowerCase()) : false) : true;
+    return districtFilterPassed && categoryFilterPassed;
+  });
+
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -96,6 +121,7 @@ function ThirdSection({ districts, categories, companies }) {
             key={index}
             name={district.toUpperCase()}
             className="districtName"
+            onDistrictSelect={() => handleDistrictSelect(district)} // Update onClick handler
           />
         ))}
       </div>
@@ -106,13 +132,15 @@ function ThirdSection({ districts, categories, companies }) {
             key={index}
             name={category.toUpperCase()}
             className="categoryName"
+            onCategorySelect={() => handleCategorySelect(category)} // Update onClick handler
           />
         ))}
       </div>
-      <AccordionList categories={categories} companies={companies} />
+      <AccordionList categories={categories} companies={filteredCompanies} />
     </div>
   );
 }
+
 
 // Custom Navbar Component
 function CustomNavbar() {
@@ -171,16 +199,20 @@ function CustomNavbar() {
 }
 
 // District Component
-function District(props) {
+function District({ name, onDistrictSelect }) {
   const [isChecked, setIsChecked] = useState(false);
+  const handleClick = () => {
+    setIsChecked(!isChecked);
+    onDistrictSelect(name); // Add this line
+  };
 
   return (
     <div
       className="districtCard customCheckbox"
-      onClick={() => setIsChecked(!isChecked)}
+      onClick={handleClick}
       style={{ cursor: "pointer", position: "relative" }}
     >
-      <h1>{props.name}</h1>
+      <h1>{name}</h1>
       <input
         type="checkbox"
         className="checkBox"
@@ -194,16 +226,20 @@ function District(props) {
 }
 
 // Category Component
-function Category(props) {
+function Category({ name, onCategorySelect }) {
   const [isChecked, setIsChecked] = useState(false);
+  const handleClick = () => {
+    setIsChecked(!isChecked);
+    onCategorySelect(name); // Add this line
+  };
 
   return (
     <div
       className="districtCard customCheckbox districtCard-Category"
-      onClick={() => setIsChecked(!isChecked)}
+      onClick={handleClick}
       style={{ cursor: "pointer", position: "relative" }}
     >
-      <h1>{props.name}</h1>
+      <h1>{name}</h1>
       <input
         type="checkbox"
         className="checkBox"
