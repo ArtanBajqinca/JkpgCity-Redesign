@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css"; // Main app styles
 import "./Font.css"; // Font styles
+import CustomNavbar from "./CustomNavBar";
+import District from "./District";
+import Category from "./Category";
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap for styling
 import { HiArrowNarrowUp } from "react-icons/hi"; // React icons for UI elements
 
@@ -188,58 +191,6 @@ function ThirdSection({
   );
 }
 
-// District Component
-function District({ name, isChecked, onDistrictSelect }) {
-  const handleClick = () => {
-    onDistrictSelect(name);
-  };
-
-  return (
-    <div
-      className="districtCard customCheckbox"
-      onClick={handleClick}
-      style={{ cursor: "pointer", position: "relative" }}
-    >
-      <h1>{name}</h1>
-      <input
-        type="checkbox"
-        className="checkBox"
-        checked={isChecked}
-        onChange={(e) => e.stopPropagation()}
-        style={{ cursor: "pointer" }}
-      />
-      <span className="customCheckmark"></span>
-    </div>
-  );
-}
-
-// Category Component
-function Category({ name, onCategorySelect }) {
-  const [isChecked, setIsChecked] = useState(false);
-  const handleClick = () => {
-    setIsChecked(!isChecked);
-    onCategorySelect(name);
-  };
-
-  return (
-    <div
-      className="districtCard customCheckbox districtCard-Category"
-      onClick={handleClick}
-      style={{ cursor: "pointer", position: "relative" }}
-    >
-      <h1>{name}</h1>
-      <input
-        type="checkbox"
-        className="checkBox"
-        checked={isChecked}
-        onChange={(e) => e.stopPropagation()}
-        style={{ cursor: "pointer" }}
-      />
-      <span className="customCheckmark"></span>
-    </div>
-  );
-}
-
 // Accordion List Component
 function AccordionList({ categories, companies, selectedCategories }) {
   // Create a grouped data structure where the key is the category
@@ -354,63 +305,6 @@ function Accordion({ name, district, url }) {
             </a>{" "}
           </h1>
         </span>
-      </div>
-    </div>
-  );
-}
-
-// CustomNavbar component for the navigation bar,
-// managing its open/close state for responsive design.
-function CustomNavbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <div className="navbarContainer">
-      <div className="navbarSection">
-        <div className="navbarLogo">
-          <img src="./img/jkpgcity.svg" alt="jkpgCity" />
-        </div>
-        <div className="navbarLinks">
-          <a href="uptäck" className="Links activeLink">
-            UPPTÄCK
-          </a>
-          <a href="evenemang" className="Links">
-            EVENEMANG
-          </a>
-          <a href="stadsdelar" className="Links">
-            STADSDELAR
-          </a>
-          <a href="information" className="Links">
-            INFORMATION
-          </a>
-          <div className="Hamburger-menu" onClick={toggleDropdown}>
-            {isOpen ? (
-              <img src="/img/hamburger-menu-closed.svg" alt="" />
-            ) : (
-              <img src="/img/hamburger-menu-open.svg" alt="" />
-            )}
-          </div>
-          {isOpen && (
-            <div className="dropdownMenu">
-              <a href="dropdown-link1" className="dropdownLink">
-                Artiklar
-              </a>
-              <a href="dropdown-link2" className="dropdownLink">
-                Kontakt
-              </a>
-              <a href="dropdown-link3" className="dropdownLink">
-                Aktör
-              </a>
-              <a href="dropdown-link4" className="dropdownLink">
-                Om
-              </a>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );
