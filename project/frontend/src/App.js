@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import "./Font.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,27 +9,25 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
 
-  // Fetch companies from the backend
-  async function fetchCompanies() {
+  const fetchCompanies = useCallback(async () => {
     const response = await fetch("http://localhost:3001/companies");
     const companies = await response.json();
     return companies;
-  }
+  }, []);
 
-  // Fetch districts from the backend
-  async function fetchDistricts() {
+  const fetchDistricts = useCallback(async () => {
     const response = await fetch("http://localhost:3001/districts");
     const districts = await response.json();
     return districts;
-  }
+  }, []);
 
-  // Fetch categories from the backend
-  async function fetchCategories() {
+  const fetchCategories = useCallback(async () => {
     const response = await fetch("http://localhost:3001/categories");
     const categories = await response.json();
     return categories;
-  }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +41,17 @@ function App() {
     };
 
     fetchData();
-  }, [fetchCompanies, fetchDistricts, fetchCategories]);
+  }, []);
+
+  const filteredCategories = selectedDistrict
+    ? categories.filter((category) =>
+        companies.some(
+          (company) =>
+            company.district === selectedDistrict &&
+            company.category === category
+        )
+      )
+    : categories;
 
   return (
     <>
@@ -51,7 +59,7 @@ function App() {
       <SecondSection />
       <ThirdSection
         districts={districts}
-        categories={categories}
+        categories={filteredCategories}
         companies={companies}
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
@@ -130,6 +138,14 @@ function ThirdSection({
     return districtFilterPassed && categoryFilterPassed;
   });
 
+  const filteredCategories = categories.filter((category) =>
+    companies.some(
+      (company) =>
+        selectedDistricts.includes(company.district.toLowerCase()) &&
+        company.category === category
+    )
+  );
+
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -159,7 +175,7 @@ function ThirdSection({
         )}
       </div>
       <AccordionList
-        categories={categories}
+        categories={filteredCompanies.map((company) => company.type)}
         companies={filteredCompanies}
         selectedCategories={selectedCategories}
       />
