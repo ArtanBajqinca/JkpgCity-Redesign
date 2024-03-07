@@ -10,7 +10,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedDistrict] = useState(null); // Unused, as it is not modified anywhere
+  const [selectedDistrict] = useState(null);
 
   // Fetching data from local server using useCallback to avoid unnecessary re-fetches on re-renders
   const fetchCompanies = useCallback(async () => {

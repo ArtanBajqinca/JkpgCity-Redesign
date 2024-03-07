@@ -7,7 +7,7 @@ class ModelClass {
   async getAllCompanies(district, category) {
     let query = "SELECT * FROM public.companies";
     const values = [];
-  
+
     if (district || category) {
       query += " WHERE";
       if (district) {
@@ -20,7 +20,7 @@ class ModelClass {
         query += ` type = $${values.length}`;
       }
     }
-  
+
     const res = await this.client.query(query, values);
     return res.rows;
   }
@@ -49,7 +49,8 @@ class ModelClass {
   constructor() {
     this.client = new Client({
       user: "postgres",
-      host: process.env.PG_HOST || "localhost",
+      // host: process.env.PG_HOST || "localhost",
+      host: "host.docker.internal",
       database: "postgres",
       password: process.env.PG_PASSWORD,
       // password: "1234", // for Abdullahi
