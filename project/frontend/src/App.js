@@ -10,20 +10,6 @@ function App() {
   const [companies, setCompanies] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const districts = await fetchDistricts();
-      const categories = await fetchCategories();
-      const companies = await fetchCompanies();
-
-      setDistricts(districts);
-      setCategories(categories);
-      setCompanies(companies);
-    };
-
-    fetchData();
-  }, []);
-
   // Fetch companies from the backend
   async function fetchCompanies() {
     const response = await fetch("http://localhost:3001/companies");
@@ -44,6 +30,20 @@ function App() {
     const categories = await response.json();
     return categories;
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const districts = await fetchDistricts();
+      const categories = await fetchCategories();
+      const companies = await fetchCompanies();
+
+      setDistricts(districts);
+      setCategories(categories);
+      setCompanies(companies);
+    };
+
+    fetchData();
+  }, [fetchCompanies, fetchDistricts, fetchCategories]);
 
   return (
     <>
