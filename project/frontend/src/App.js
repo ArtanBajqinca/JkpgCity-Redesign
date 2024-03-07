@@ -8,6 +8,7 @@ function App() {
   const [districts, setDistricts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +53,8 @@ function App() {
         districts={districts}
         categories={categories}
         companies={companies}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
       />
     </>
   );
@@ -87,16 +90,24 @@ function SecondSection() {
   );
 }
 
-function ThirdSection({ districts, categories, companies }) {
+function ThirdSection({
+  districts,
+  categories,
+  companies,
+  selectedCategories,
+  setSelectedCategories,
+}) {
   const [selectedDistricts, setSelectedDistricts] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [clearDistricts, setClearDistricts] = useState(false); // State to track whether districts should be cleared
 
   const handleDistrictSelect = (district) => {
-    if (selectedDistricts.includes(district)) {
-      setSelectedDistricts(selectedDistricts.filter((d) => d !== district));
+    if (selectedDistricts.includes(district.toLowerCase())) {
+      setSelectedDistricts(
+        selectedDistricts.filter(
+          (d) => d.toLowerCase() !== district.toLowerCase()
+        )
+      );
     } else {
-      setSelectedDistricts([...selectedDistricts, district]);
+      setSelectedDistricts([...selectedDistricts, district.toLowerCase()]);
     }
   };
 
@@ -108,25 +119,14 @@ function ThirdSection({ districts, categories, companies }) {
     }
   };
 
-  const handleClearDistricts = () => {
-    setSelectedDistricts([]); // Clear selected districts
-    setClearDistricts(true); // Update state to trigger re-render
-    setTimeout(() => {
-      setClearDistricts(false); // Reset clearDistricts state after a short delay
-    }, 100);
-  };
-
   const filteredCompanies = companies.filter((company) => {
     const districtFilterPassed =
-      selectedDistricts.length > 0
-        ? selectedDistricts.includes(company.district)
-        : true;
+      selectedDistricts.length === 0 ||
+      selectedDistricts.includes(company.district.toLowerCase());
     const categoryFilterPassed =
-      selectedCategories.length > 0
-        ? company.category
-          ? selectedCategories.includes(company.category.toLowerCase())
-          : false
-        : true;
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(company.type);
+
     return districtFilterPassed && categoryFilterPassed;
   });
 
@@ -137,30 +137,204 @@ function ThirdSection({ districts, categories, companies }) {
           <District
             key={index}
             name={district.toUpperCase()}
-            isChecked={clearDistricts ? false : selectedDistricts.includes(district)} // Pass isChecked state and update it based on clearDistricts state
+            isChecked={selectedDistricts.includes(district.toLowerCase())}
             onDistrictSelect={() => handleDistrictSelect(district)}
           />
         ))}
       </div>
 
-      {/* <div className="categoryDiv">
-        {categories.map((category, index) => (
-          <Category
-            key={index}
-            name={category.toUpperCase()}
-            className="categoryName"
-            onCategorySelect={() => handleCategorySelect(category)}
-          />
-        ))}
-      </div> */}
-
-      <button className="clearDistrictButton" onClick={handleClearDistricts}>Rensa Distrikt</button>
-
-      <AccordionList categories={categories} companies={filteredCompanies} />
+      <div className="categoryDiv">
+        {categories.map(
+          (category, index) => (
+            console.log(category),
+            (
+              <Category
+                key={index}
+                name={category.toUpperCase()}
+                className="categoryName"
+                onCategorySelect={() => handleCategorySelect(category)}
+              />
+            )
+          )
+        )}
+      </div>
+      <AccordionList
+        categories={categories}
+        companies={filteredCompanies}
+        selectedCategories={selectedCategories}
+      />
     </div>
   );
 }
 
+// District Component
+function District({ name, isChecked, onDistrictSelect }) {
+  const handleClick = () => {
+    onDistrictSelect(name);
+  };
+
+  return (
+    <div
+      className="districtCard customCheckbox"
+      onClick={handleClick}
+      style={{ cursor: "pointer", position: "relative" }}
+    >
+      <h1>{name}</h1>
+      <input
+        type="checkbox"
+        className="checkBox"
+        checked={isChecked}
+        onChange={(e) => e.stopPropagation()}
+        style={{ cursor: "pointer" }}
+      />
+      <span className="customCheckmark"></span>
+    </div>
+  );
+}
+
+// Category Component
+function Category({ name, onCategorySelect }) {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleClick = () => {
+    setIsChecked(!isChecked);
+    onCategorySelect(name);
+  };
+
+  return (
+    <div
+      className="districtCard customCheckbox districtCard-Category"
+      onClick={handleClick}
+      style={{ cursor: "pointer", position: "relative" }}
+    >
+      <h1>{name}</h1>
+      <input
+        type="checkbox"
+        className="checkBox"
+        checked={isChecked}
+        onChange={(e) => e.stopPropagation()}
+        style={{ cursor: "pointer" }}
+      />
+      <span className="customCheckmark"></span>
+    </div>
+  );
+}
+
+// Accordion List Component
+function AccordionList({ categories, companies, selectedCategories }) {
+  // Create a grouped data structure where the key is the category
+  const groupedData = companies.reduce((acc, company) => {
+    const category = company.type;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(company);
+    return acc;
+  }, {});
+
+  // Decide which categories to show. If there are selected categories, filter to only show those.
+  // Otherwise, show all categories.
+  const categoriesToShow =
+    selectedCategories.length > 0
+      ? categories.filter((category) => selectedCategories.includes(category))
+      : categories;
+
+  return (
+    <div className="accordion-list">
+      {categoriesToShow.map((category, index) => (
+        <React.Fragment key={index}>
+          <CategoryTitle name={category} />
+          <AccordionGroup items={groupedData[category] || []} />
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+// Category Title Component
+function CategoryTitle(props) {
+  return (
+    <div className="categoryTitleDiv">
+      <h1>{props.name}</h1>
+    </div>
+  );
+}
+
+// Accordion Group Component
+function AccordionGroup({ items }) {
+  return (
+    <div className="accordion-group">
+      {items.map((item, index) => (
+        <Accordion
+          key={index}
+          name={item.name}
+          district={item.district}
+          url={item.url}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Accordion Component
+function Accordion({ name, district, url }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const selectIcon = (district) => {
+    switch (district) {
+      case "rådhusparken":
+        return <img src="./img/rådhusparkenIcon.svg" alt="rådhusparken icon" />;
+      case "atollen":
+        return <img src="./img/atollenIcon.svg" alt="atollen icon" />;
+      case "öster":
+        return <img src="./img/österIcon.svg" alt="öster icon" />;
+      case "kulturhuset spira":
+        return <img src="./img/kulturHusetSpiraIcon.svg" alt="spira icon" />;
+      case "högskolan":
+        return <img src="./img/högskolanIcon.svg" alt="högksolan icon" />;
+      case "väster":
+        return <img src="./img/västerIcon.svg" alt="väster icon" />;
+      case "stationen":
+        return <img src="./img/stationenIcon.svg" alt="stationen icon" />;
+      case "tändsticksområdet":
+        return (
+          <img
+            src="./img/tändSticksOmrådetIcon.svg"
+            alt="tändsticksområdet icon"
+          />
+        );
+    }
+  };
+
+  return (
+    <div className="accordion">
+      <div className="accordion-header" onClick={toggleAccordion}>
+        <h3>{name}</h3>
+        {isOpen ? (
+          <IoIosArrowRoundUp className="accordionArrow open" />
+        ) : (
+          <IoIosArrowRoundUp className="accordionArrow" />
+        )}
+      </div>
+      <div className={`accordion-content ${isOpen ? "open" : ""}`}>
+        <span>
+          {selectIcon(district)}
+          <h1>Distrikt: {district}</h1>
+        </span>
+        <br />
+        <span>
+          <img src="./img/webIcon.svg" alt="webIcon" />
+          <h1>
+            <a href={url}>{url}</a>
+          </h1>
+        </span>
+      </div>
+    </div>
+  );
+}
 
 // Custom Navbar Component
 function CustomNavbar() {
@@ -213,162 +387,6 @@ function CustomNavbar() {
             </div>
           )}
         </div>
-      </div>
-    </div>
-  );
-}
-
-// District Component
-function District({ name, isChecked, onDistrictSelect }) {
-  const handleClick = () => {
-    onDistrictSelect(name); // Add this line
-  };
-
-  return (
-    <div
-      className="districtCard customCheckbox"
-      onClick={handleClick}
-      style={{ cursor: "pointer", position: "relative" }}
-    >
-      <h1>{name}</h1>
-      <input
-        type="checkbox"
-        className="checkBox"
-        checked={isChecked}
-        onChange={(e) => e.stopPropagation()}
-        style={{ cursor: "pointer" }}
-      />
-      <span className="customCheckmark"></span>
-    </div>
-  );
-}
-
-
-// Category Component
-function Category({ name, onCategorySelect }) {
-  const [isChecked, setIsChecked] = useState(false);
-  const handleClick = () => {
-    setIsChecked(!isChecked);
-    onCategorySelect(name); // Add this line
-  };
-
-  return (
-    <div
-      className="districtCard customCheckbox districtCard-Category"
-      onClick={handleClick}
-      style={{ cursor: "pointer", position: "relative" }}
-    >
-      <h1>{name}</h1>
-      <input
-        type="checkbox"
-        className="checkBox"
-        checked={isChecked}
-        onChange={(e) => e.stopPropagation()}
-        style={{ cursor: "pointer" }}
-      />
-      <span className="customCheckmark"></span>
-    </div>
-  );
-}
-
-// Accordion List Component
-function AccordionList({ categories, companies }) {
-  const groupedData = categories.reduce((acc, category) => {
-    acc[category] = companies.filter((company) => company.type === category);
-    return acc;
-  }, {});
-
-  return (
-    <div className="accordion-list">
-      {categories.map((category, index) => (
-        <React.Fragment key={index}>
-          <CategoryTitle name={category.toUpperCase()} />
-          <AccordionGroup items={groupedData[category]} />
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
-
-// Category Title Component
-function CategoryTitle(props) {
-  return (
-    <div className="categoryTitleDiv">
-      <h1>{props.name}</h1>
-    </div>
-  );
-}
-
-// Accordion Group Component
-function AccordionGroup({ items }) {
-  return (
-    <div className="accordion-group">
-      {items.map((item, index) => (
-        <Accordion
-          key={index}
-          name={item.name}
-          district={item.district}
-          url={item.url}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Accordion Component
-function Accordion({ name, district, url }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const selectIcon = (district) => {
-    switch (district) {
-      case "rådhusparken":
-        return <img src="./img/rådhusparkenIcon.svg" alt="rådhusparken" />;
-      case "atollen":
-        return <img src="./img/atollenIcon.svg" alt="atollen" />;
-      case "öster":
-        return <img src="./img/österIcon.svg" alt="Home" />;
-      case "kulturhuset spira":
-        return <img src="./img/kulturHusetSpiraIcon.svg" alt="Home" />;
-      case "högskolan":
-        return <img src="./img/högskolanIcon.svg" alt="Home" />;
-      case "väster":
-        return <img src="./img/västerIcon.svg" alt="Home" />;
-      case "stationen":
-        return <img src="./img/stationenIcon.svg" alt="Home" />;
-      case "tändsticksområdet":
-        return <img src="./img/tändSticksOmrådetIcon.svg" alt="Home" />;
-      // Add more cases for other districts as needed
-      default:
-        return <img src="./img/default.png" alt="Default" />; // Default icon
-    }
-  };
-
-  return (
-    <div className="accordion">
-      <div className="accordion-header" onClick={toggleAccordion}>
-        <h3>{name}</h3>
-        {isOpen ? (
-          <IoIosArrowRoundUp className="accordionArrow open" />
-        ) : (
-          <IoIosArrowRoundUp className="accordionArrow" />
-        )}
-      </div>
-      <div className={`accordion-content ${isOpen ? "open" : ""}`}>
-        <span>
-          {selectIcon(district)}
-          <h1>Distrikt: {district}</h1>
-        </span>
-        <br />
-        <span>
-          <img src="./img/webIcon.svg" alt="webIcon" />
-          <h1>
-            <a href={url}>{url}</a>
-          </h1>
-        </span>
       </div>
     </div>
   );
