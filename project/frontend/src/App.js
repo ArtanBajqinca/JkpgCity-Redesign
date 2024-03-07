@@ -175,7 +175,7 @@ function ThirdSection({
         )}
       </div>
       <AccordionList
-        categories={filteredCompanies.map((company) => company.type)}
+        categories={categories}
         companies={filteredCompanies}
         selectedCategories={selectedCategories}
       />
