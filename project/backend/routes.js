@@ -13,20 +13,6 @@ router.get("/companies", async (_req, res) => {
   }
 });
 
-// Get a single company by its ID
-router.get("/company/:id", async (req, res) => {
-  try {
-    const company = await Model.getCompany(req.params.id);
-    if (company) {
-      res.json(company);
-    } else {
-      res.status(404).json({ message: "Company not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 // Get all unique districts
 router.get("/districts", async (req, res) => {
   const uniqueDistricts = await Model.getAllDistricts();
@@ -39,30 +25,6 @@ router.get("/categories", async (req, res) => {
   res.json(uniqueCategories);
 });
 
-// Login Routes
-router.get("/login", (req, res) => {
-  const { username, password } = req.query;
-  if (username === "admin" && password === "password") {
-    res.cookie("token", "super-secret-cookie", { httpOnly: true });
-    res.status(200).send({ message: "Login successful" });
-  } else {
-    res.status(401).send({ message: "Invalid username or password" });
-  }
-});
-
-router.get("/logout", (req, res) => {
-  res.clearCookie("token");
-  res.status(200).send({ message: "Logout successful" });
-});
-
-router.get("/check-user-status", async (req, res) => {
-  const { token } = req.cookies;
-  if (token === "super-secret-cookie") {
-    res.send("User is logged in");
-  } else {
-    res.send("User is not logged in");
-  }
-});
 
 // Database Setup Route
 router.get("/setup", async (req, res) => {

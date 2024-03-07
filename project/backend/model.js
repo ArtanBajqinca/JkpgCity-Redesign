@@ -25,15 +25,6 @@ class ModelClass {
     return res.rows;
   }
 
-  // Retrieve a single company by its ID
-  async getCompany(id) {
-    const res = await this.client.query(
-      "SELECT * FROM public.companies WHERE id = $1",
-      [id]
-    );
-    return res.rows[0];
-  }
-
   // Retrieve all distinct districts from the companies table
   async getAllDistricts() {
     const res = await this.client.query(

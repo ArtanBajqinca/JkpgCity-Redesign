@@ -9,7 +9,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [selectedDistrict] = useState(null);
 
   const fetchCompanies = useCallback(async () => {
     const response = await fetch("http://localhost:3001/companies");
@@ -138,13 +138,6 @@ function ThirdSection({
     return districtFilterPassed && categoryFilterPassed;
   });
 
-  const filteredCategories = categories.filter((category) =>
-    companies.some(
-      (company) =>
-        selectedDistricts.includes(company.district.toLowerCase()) &&
-        company.category === category
-    )
-  );
 
   return (
     <div className="thirdSectionBody">
