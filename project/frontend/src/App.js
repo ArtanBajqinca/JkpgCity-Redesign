@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "./Font.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { IoIosArrowRoundUp } from "react-icons/io";
+import { HiArrowNarrowUp } from "react-icons/hi";
 
 function App() {
   const [districts, setDistricts] = useState([]);
@@ -314,9 +314,9 @@ function Accordion({ name, district, url }) {
       <div className="accordion-header" onClick={toggleAccordion}>
         <h3>{name}</h3>
         {isOpen ? (
-          <IoIosArrowRoundUp className="accordionArrow open" />
+          <HiArrowNarrowUp className="accordionArrow open" />
         ) : (
-          <IoIosArrowRoundUp className="accordionArrow" />
+          <HiArrowNarrowUp className="accordionArrow" />
         )}
       </div>
       <div className={`accordion-content ${isOpen ? "open" : ""}`}>
@@ -381,7 +381,7 @@ function CustomNavbar() {
               <a href="dropdown-link3" className="dropdownLink">
                 Aktör
               </a>
-              <a href="dropdown-link3" className="dropdownLink">
+              <a href="dropdown-link4" className="dropdownLink">
                 Om
               </a>
             </div>
