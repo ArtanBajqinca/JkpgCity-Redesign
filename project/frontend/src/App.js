@@ -344,8 +344,7 @@ function Accordion({ name, district, url }) {
         <span>
           <img src="./img/webIcon.svg" alt="webIcon" />
           <h1>
-            <a href={url}>{url}</a>
-          </h1>
+          <a href={"//" + url} target="_blank" rel="noopener noreferrer">{url}</a>          </h1>
         </span>
       </div>
     </div>
