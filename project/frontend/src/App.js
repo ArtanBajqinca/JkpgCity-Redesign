@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./App.css";
-import "./Font.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { HiArrowNarrowUp } from "react-icons/hi";
+import "./App.css"; // Main app styles
+import "./Font.css"; // Font styles
+import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap for styling
+import { HiArrowNarrowUp } from "react-icons/hi"; // React icons for UI elements
 
 function App() {
+  // State hooks to manage districts, categories, companies, selected categories, and selected district
   const [districts, setDistricts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedDistrict] = useState(null);
+  const [selectedDistrict] = useState(null); // Unused, as it is not modified anywhere
 
+  // Fetching data from local server using useCallback to avoid unnecessary re-fetches on re-renders
   const fetchCompanies = useCallback(async () => {
     const response = await fetch("http://localhost:3001/companies");
     const companies = await response.json();
@@ -29,20 +31,22 @@ function App() {
     return categories;
   }, []);
 
+  // useEffect to fetch initial data on component mount
   useEffect(() => {
     const fetchData = async () => {
       const districts = await fetchDistricts();
       const categories = await fetchCategories();
       const companies = await fetchCompanies();
 
+      // Updating state with fetched data
       setDistricts(districts);
       setCategories(categories);
       setCompanies(companies);
     };
-
     fetchData();
   }, []);
 
+  // Filtering categories based on selected district
   const filteredCategories = selectedDistrict
     ? categories.filter((category) =>
         companies.some(
@@ -68,7 +72,8 @@ function App() {
   );
 }
 
-// First Section including Navbar
+// Component representing the first section of the app,
+// including the navbar and introductory content
 function FirstSection() {
   return (
     <div className="firstSectionBody">
@@ -85,7 +90,8 @@ function FirstSection() {
   );
 }
 
-// Second Section Component
+// Component for the second section of the app, usually
+// for displaying additional information or graphics
 function SecondSection() {
   return (
     <div className="secondSectionBody">
@@ -98,6 +104,8 @@ function SecondSection() {
   );
 }
 
+// Third section component handling the main interactive
+// part of the application, including filters and company listings
 function ThirdSection({
   districts,
   categories,
@@ -107,7 +115,9 @@ function ThirdSection({
 }) {
   const [selectedDistricts, setSelectedDistricts] = useState([]);
 
+  // Functions to handle user interactions for selecting/deselecting districts and categories
   const handleDistrictSelect = (district) => {
+    // Logic to add or remove districts from the selection based on current state
     if (selectedDistricts.includes(district.toLowerCase())) {
       setSelectedDistricts(
         selectedDistricts.filter(
@@ -120,6 +130,7 @@ function ThirdSection({
   };
 
   const handleCategorySelect = (category) => {
+    // Similar logic for categories
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
     } else {
@@ -127,6 +138,7 @@ function ThirdSection({
     }
   };
 
+  // Filtering companies based on selected districts and categories
   const filteredCompanies = companies.filter((company) => {
     const districtFilterPassed =
       selectedDistricts.length === 0 ||
@@ -138,6 +150,7 @@ function ThirdSection({
     return districtFilterPassed && categoryFilterPassed;
   });
 
+  // Rendering district and category filters, along with filtered company listings
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -346,7 +359,8 @@ function Accordion({ name, district, url }) {
   );
 }
 
-// Custom Navbar Component
+// CustomNavbar component for the navigation bar,
+// managing its open/close state for responsive design.
 function CustomNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
