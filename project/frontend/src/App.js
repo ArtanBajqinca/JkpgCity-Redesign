@@ -138,7 +138,6 @@ function ThirdSection({
     return districtFilterPassed && categoryFilterPassed;
   });
 
-
   return (
     <div className="thirdSectionBody">
       <div className="districtDiv">
@@ -251,7 +250,7 @@ function AccordionList({ categories, companies, selectedCategories }) {
     <div className="accordion-list">
       {categoriesToShow.map((category, index) => (
         <React.Fragment key={index}>
-          <CategoryTitle name={category} />
+          <CategoryTitle name={category.toUpperCase()} />
           <AccordionGroup items={groupedData[category] || []} />
         </React.Fragment>
       ))}
@@ -337,7 +336,10 @@ function Accordion({ name, district, url }) {
         <span>
           <img src="./img/webIcon.svg" alt="webIcon" />
           <h1>
-          <a href={"//" + url} target="_blank" rel="noopener noreferrer">{url}</a>          </h1>
+            <a href={"//" + url} target="_blank" rel="noopener noreferrer">
+              {url}
+            </a>{" "}
+          </h1>
         </span>
       </div>
     </div>
